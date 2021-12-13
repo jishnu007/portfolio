@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+@font-face {
+  font-family: 'Antro_vectra';
+  src: local('Antro_vectra'), url(../public/fonts/Antro_Vectra.ttf) format('truetype');
+}
