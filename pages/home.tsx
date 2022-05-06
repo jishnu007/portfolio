@@ -9,7 +9,6 @@ function home() {
       showActiveTooltip={false}
       slidesNavigation={false}
       cards={true}
-      licenseKey="YOUR_KEY_HERE"
       render={(comp) => (
         <ReactFullpage.Wrapper>
           <div

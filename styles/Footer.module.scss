@@ -1,3 +1,19 @@
+$social-button-active-color: #fff;
+$social-button-transition-time: 0.3s;
+$social-button-colors: (
+  'mail': #0072c6,
+  'facebook': #3b5999,
+  'linkedin': #0077b5,
+  'github': #6e5494,
+  'codepen': #212121,
+  'steam': #7da10e,
+  'snapchat': #eec900,
+  'twitter': #55acee,
+  // 'instagram': #e4405f,
+  'instagram': linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d),
+  'npmjs': #c12127,
+  
+);
 .footer{
     display: flex;
     justify-content: center;
@@ -13,7 +29,46 @@
         display: flex;
         justify-content: center;
         span{
+            position: relative;
             color: rgba(255,255,255,0.7);
+            z-index: 1;
         }
+        &::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            display: block;
+            width: 0;
+            height: 0;
+            border-radius: 100%;
+            transition: $social-button-transition-time;
+          }
+        
+        &:focus,
+        &:hover {
+            // color: $social-button-active-color;
+        
+            &::after {
+              width: calc(100% + 2px);
+              height: calc(100% + 2px);
+              margin-left: calc(-50% - 1px);
+            }
+          }
+   
     }
+           @each $name, $color in $social-button-colors {
+            &__#{$name} {
+            //   color: $color;
+        
+              &::after {
+
+                background: $color !important;
+              }
+            }
+          }
+    // .facebook:hover::after{
+    //     background: #3b5999 !important;
+    // }
+    
 }

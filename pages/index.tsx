@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -15,6 +16,8 @@ import { lookup } from "dns";
 import ProjectCard from "../components/ProjectCard";
 import ContactMe from "../components/ContactMe";
 import ReactFullpage from "@fullpage/react-fullpage";
+import bgChanger from "../utils/bgChanger";
+
 const Home: NextPage = () => {
   const synonyms: string[] = [
     "ace",
@@ -177,6 +180,15 @@ const Home: NextPage = () => {
       tags: ["Next JS", "NodeJS", "MongoDB", "Styled Components", "Ant D"],
     },
   ];
+  const handleAfterLoad = () => {
+    const element = document.querySelectorAll(
+      ".fp-section.active .aos-init"
+    )[0];
+    if (element) {
+      element.className = "aos-init aos-animate";
+    }
+  };
+
   // const element = document.getElementById("scrambling-text");
   // const writer = new GlitchedWriter(element, {
   //   interval: [10, 70],
@@ -228,11 +240,29 @@ const Home: NextPage = () => {
 
       {/* <main className={styles.main}> */}
       <ReactFullpage
-        navigation
+        navigation={false}
+        licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
+        afterLoad={handleAfterLoad}
+        easing="easeInOutCubic"
+        easingcss3="ease"
+        fadingEffect={true}
+        fitToSection={false}
+        anchors={["home", "about", "projects", "contact"]}
+        responsiveWidth={967}
+        // normalScrollElements={".aboutsection"}
+        // scrollOverflow={true}
         render={(comp) => (
           <ReactFullpage.Wrapper>
-            <div className={[styles.mainSection, "section"].join(" ")}>
-              <div className="flex w-full px-12 justify-between">
+            <div
+              className={[styles.mainSection, "section"].join(" ")}
+              data-anchor=""
+            >
+              <div className={styles.mainSection__rightCircle}>
+                <div className={styles.mainSection__rightCircleImage}>
+                  <img src="removed-bg-1.png" alt="bg" />
+                </div>
+              </div>
+              <div className={styles.mainSection__container}>
                 <div
                   className={[
                     styles.mainSection__left,
@@ -252,26 +282,49 @@ const Home: NextPage = () => {
                     " flex items-center",
                   ].join(" ")}
                 >
-                  <StarterImage />
+                  {/* <StarterImage /> */}
                 </div>
               </div>
             </div>
-            <div className={[styles.aboutsection, "section"].join(" ")}>
-              <div className=" d-flex p-12">
+            <div
+              className={[styles.aboutSection, "aboutsection section"].join(
+                " "
+              )}
+              data-anchor="about"
+            >
+              <div className=" d-flex p-12 ">
                 <p>
-                  Hi, I'm <span>JIshnu Pavithran</span>, a full stack web
-                  developer from <span>kerala,India</span>.I've worked with and
-                  for <span>startups</span> like Rayabhari and Sweans,helped
-                  companies like Experience, UtilizeCore and SecurityCentric by
-                  providing <span>cutting edge</span> web experiences and
-                  technology
+                  👋 Hi, I'm <span>Jishnu</span>
                 </p>
                 <p>
+                  I'm a{" "}
+                  <span>Full Stack Web Developer / Software Engineer</span> from{" "}
+                  <span>kerala</span> Who is passionate about creating
+                  <span> interactive digital experiences</span> on the web as
+                  well as making it dynamic by{" "}
+                  <span>robust web architecture</span>.I love solving problems
+                  and working with <span> React, Vue</span> and other hip
+                  frameworks
+                </p>{" "}
+                <p>
+                  {" "}
+                  I've worked with and for <span>startups</span> like Rayabhari
+                  and Sweans,helped companies like{" "}
+                  <span>Experience, UtilizeCore</span> and{" "}
+                  <span>SecurityCentric</span> by providing{" "}
+                  <span>cutting edge</span> web experiences and technology
+                </p>
+                {/* <p>
                   I have <span>2 year</span> experience as a{" "}
                   <span>developer</span> and love solving problems and working
                   with React and other hip frameworks
+                </p> */}
+                <p>
+                  If you fancy a chat feel free to{" "}
+                  <span className={styles.aboutSectionHoverable}>
+                    drop me a line.
+                  </span>
                 </p>
-                <p>If you fancy a chat feel free to drop me a line.</p>
                 <p>
                   <span>
                     {" "}
@@ -295,41 +348,37 @@ const Home: NextPage = () => {
                 </p>
               </div>
             </div>
-            <div className={[styles.projectSection, "section"].join(" ")}>
-              <ul>
-                {projects.map((project: any, index: number) => {
-                  return (
-                    <li key={index}>
-                      <ProjectCard
-                        title={project.title}
-                        description={project.desc}
-                        tags={project.tags}
-                        images={project.images}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
+            <div
+              className={[styles.projectSection, "section"].join(" ")}
+              data-anchor="projects"
+            >
+              <div className={styles.projectSectionInner}>
+                <h2 data-aos="fade-up">Stuff I’ve worked on 📁</h2>
+                <ul>
+                  {projects.map((project: any, index: number) => {
+                    return (
+                      <li key={index}>
+                        <ProjectCard
+                          title={project.title}
+                          description={project.desc}
+                          tags={project.tags}
+                          images={project.images}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
-            <div className={[styles.contactSection, "section"].join(" ")}>
+            <div
+              className={[styles.contactSection, "section"].join(" ")}
+              data-anchor="contact"
+            >
               <ContactMe />
             </div>
           </ReactFullpage.Wrapper>
         )}
       />
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-           
-          </span>
-        </a>
-      </footer> */}
     </>
   );
 };

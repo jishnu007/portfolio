@@ -23,15 +23,7 @@ const ProjectCard = (props: {
         className={Styles.cardImage}
       /> */}
       <div className={Styles.cardImageWrapper}>
-        <img
-          src={props.images[0]}
-          alt={props.images[0]}
-          style={{
-            width: "100%",
-            borderRadius: "8px 8px 0 0",
-            minHeight: "250px",
-          }}
-        />
+        <img src={props.images[0]} alt={props.images[0]} />
         <div className={Styles.cardOverlay}>
           <div className={Styles.tags}>
             {props.tags.map((tag: any, index: number) => {
@@ -42,6 +34,7 @@ const ProjectCard = (props: {
               );
             })}
           </div>
+          <div className={Styles.more}>See More..</div>
         </div>
       </div>
       <div className={Styles.cardDetails}>

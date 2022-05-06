@@ -8,10 +8,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fullpage/react-fullpage": "^0.1.23",
+    "@fullpage/react-fullpage": "0.1.23",
     "@hookform/error-message": "^2.0.0",
     "@skits/react-text-scramble": "^1.1.0",
+    "@types/aos": "^3.0.4",
     "@types/nodemailer": "^6.4.4",
+    "aos": "^2.3.4",
     "axios": "^0.27.0",
     "clsx": "^1.1.1",
     "glitched-writer": "^2.0.29",

@@ -51,15 +51,95 @@ h3{
 }
 
 .navbar {
+  background: rgba(255,255,255,0.4);
   &__nav {
     color: #2c281d;
     font-size: 22px;
-    li:first-child{
-      color:#fff
+    @media(max-width:769px){
+      display: none;
     }
   }
   &__logo{
     background: #2C281D;
     border-radius: 0 0 12px 12px;
+    span,img{
+      width:180px;
+      height:60px !important;
+      transition: ease-in-out 1s;
+      }
   }
+
+}
+// #fp-nav {
+//   display: none;
+// }
+// .fullpage-wrapper {
+// 	width: 100%!important;
+// 	transform: none!important;
+// }
+
+// .fp-section {
+// 	visibility: hidden;
+// 	opacity: 0.5;
+// 	// z-index: 0;
+// 	transition: all .7s ease-in-out;
+// }
+
+// .fp-section.active {
+// 	visibility: visible;
+// 	opacity: 1;
+// 	// z-index: 1;
+// }
+.fp-viewing-home{
+  .navbar{
+    transition: ease-in-out 1s;
+    background: transparent !important;
+    &__nav {
+      li:first-child{
+        color:#fff
+      }
+    }
+  }
+  .navbar__logo{
+    span,img{
+      transition: ease-in-out 1s;
+    width:180px !important;
+    height:90px !important;
+    }
+  }
+}
+.fp-viewing-1{
+  .navbar__logo{
+    // background: $primary;
+  }
+}
+.fp-viewing-about{
+  .navbar{
+    &__nav {
+      li:nth-child(2){
+        color:#fff
+      }
+    }
+  }
+}
+.fp-viewing-projects{
+  .navbar{
+    &__nav {
+      li:nth-child(3){
+        color:#fff
+      }
+    }
+  }
+}
+.fp-viewing-contact{
+  .navbar{
+    &__nav {
+      li:nth-child(4){
+        color:#fff
+      }
+    }
+  }
+}
+.fp-scrollable{
+  display: contents;
 }
