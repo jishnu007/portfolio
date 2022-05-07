@@ -1,23 +1,15 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  webpack(config, options) {
-    const fileLoaderRule = config.module.rules.find(
-      (rule) => rule.test && rule.test.test(".svg")
-    );
-    fileLoaderRule.exclude = /\.svg$/;
-
+  webpack(config) {
     config.module.rules.push({
-      loader: "@svgr/webpack",
-      options: {
-        prettier: false,
-        svgo: true,
-        svgoConfig: {
-          plugins: [{ removeViewBox: false }],
-        },
-        titleProp: true,
-      },
       test: /\.svg$/,
+      issuer: {
+        test: /\.(js|ts)x?$/,
+        and: [/\.(js|ts)x?$/],
+      },
+
+      use: ["@svgr/webpack"],
     });
 
     return config;
