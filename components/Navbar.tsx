@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "/public/logo.svg";
 const Navbar = () => {
   return (
     <div className="absolute z-10 px-16 navbar justify-between flex w-full">
@@ -10,7 +11,8 @@ const Navbar = () => {
         data-aos-easing="linear"
         data-aos-duration="700"
       >
-        <Image src={"/logo.svg"} alt="logo" width={180} height={90} />
+        {/* <Image src={Logo} alt="logo" width={180} height={90} /> */}
+        <Logo width={180} height={90} />
       </div>
       <ul className="navbar__nav flex text-center items-center font-bold text-xl">
         <li className="px-8">
