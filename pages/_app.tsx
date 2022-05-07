@@ -8,7 +8,10 @@ import "aos/dist/aos.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      startEvent: "load",
+      once: false,
+    });
   }, []);
   return (
     <Layout>

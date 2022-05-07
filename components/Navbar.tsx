@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +11,7 @@ const Navbar = () => {
         data-aos-easing="linear"
         data-aos-duration="700"
       >
-        <Image src="/logo.svg" alt="logo" width={180} height={90} />
+        <img src="/logo.svg" alt="logo" width="180px" height="90px" />
       </div>
       <ul className="navbar__nav flex text-center items-center font-bold text-xl">
         <li className="px-8">
@@ -26,7 +27,7 @@ const Navbar = () => {
           <a href="#contact">Contact</a>
         </li>
       </ul>
-      <Image src="/hamburger.svg" alt="hamburger" width={42} height={42} />
+      <img src="/hamburger.svg" alt="hamburger" width="42px" height="42px" />
     </div>
   );
 };
