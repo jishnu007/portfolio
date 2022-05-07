@@ -55,13 +55,14 @@ h3{
   &__nav {
     color: #2c281d;
     font-size: 22px;
+  
     @media(max-width:769px){
       display: none;
     }
   }
   &__logo{
+    border-radius: 0 0 4px 4px;
     background: #2C281D;
-    border-radius: 0 0 12px 12px;
     span,img{
       width:180px;
       height:60px !important;
@@ -95,9 +96,13 @@ h3{
     transition: ease-in-out 1s;
     background: transparent !important;
     &__nav {
+      font-size: 22px;
       li:first-child{
         color:#fff
       }
+    }
+    &__logo{
+      border-radius: 0 0 12px 12px;
     }
   }
   .navbar__logo{
@@ -116,6 +121,7 @@ h3{
 .fp-viewing-about{
   .navbar{
     &__nav {
+      font-size: 18px;
       li:nth-child(2){
         color:#fff
       }
@@ -125,6 +131,7 @@ h3{
 .fp-viewing-projects{
   .navbar{
     &__nav {
+      font-size: 18px;
       li:nth-child(3){
         color:#fff
       }
@@ -134,6 +141,7 @@ h3{
 .fp-viewing-contact{
   .navbar{
     &__nav {
+      font-size: 18px;
       li:nth-child(4){
         color:#fff
       }

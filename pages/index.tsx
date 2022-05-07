@@ -259,7 +259,7 @@ const Home: NextPage = () => {
             >
               <div className={styles.mainSection__rightCircle}>
                 <div className={styles.mainSection__rightCircleImage}>
-                  <img src="removed-bg-1.png" alt="bg" />
+                  <img src="/myself.png" alt="bg" />
                 </div>
               </div>
               <div className={styles.mainSection__container}>

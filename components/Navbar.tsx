@@ -10,7 +10,7 @@ const Navbar = () => {
         data-aos-easing="linear"
         data-aos-duration="700"
       >
-        <Image src="/logo4.svg" alt="Logo" width={180} height={90} />
+        <Image src="/logo.svg" alt="logo" width={180} height={90} />
       </div>
       <ul className="navbar__nav flex text-center items-center font-bold text-xl">
         <li className="px-8">
