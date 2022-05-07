@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "/public/logo.svg";
+import Logo from "/logo.svg";
 const Navbar = () => {
   return (
     <div className="absolute z-10 px-16 navbar justify-between flex w-full">
