@@ -28,7 +28,7 @@ const Navbar = () => {
           <a href="#contact">Contact</a>
         </li>
       </ul>
-      <img src={Hamburger} alt="hamburger" width="42px" height="42px" />
+      <Image src={Hamburger} alt="hamburger" width={42} height={42} />
     </div>
   );
 };
