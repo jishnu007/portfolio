@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../assets/images/logo.svg";
+import Hamburger from "../public/hamburger.svg";
 const Navbar = () => {
   return (
     <div className="absolute z-10 px-16 navbar justify-between flex w-full">
@@ -27,7 +28,7 @@ const Navbar = () => {
           <a href="#contact">Contact</a>
         </li>
       </ul>
-      <img src="/hamburger.svg" alt="hamburger" width="42px" height="42px" />
+      <img src={Hamburger} alt="hamburger" width="42px" height="42px" />
     </div>
   );
 };
