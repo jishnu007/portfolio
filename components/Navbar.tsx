@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../assets/images/logo.svg";
-import Hamburger from "../public/hamburger.svg";
+import Hamburger from "../assets/images/hamburger.svg";
 const Navbar = () => {
   return (
     <div className="absolute z-10 px-16 navbar justify-between flex w-full">
