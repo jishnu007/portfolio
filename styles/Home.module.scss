@@ -204,10 +204,48 @@ $secondary:#2c281d;
   -ms-transition: $secondary 1000ms linear;
   font-weight: 700;
   height: auto;
+  &Content{
+    display: flex;
+    padding: 48px;
+    padding-right: 0px;
+    &Left{
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+      text-align: justify;
+      justify-content: center;
+      @media(max-width:960px){
+        width: 100%;
+      }
+    }
+    &Right{
+      padding-left: 2%;
+      width: 43%;
+      @media(max-width:960px){
+        padding-left: 0;
+        width: 100%;
+      }
+    }
+    @media(max-width:960px){
+      flex-direction: column;
+      padding-right: 48px;
+    }
+    @media(max-width:600px){
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
   p{
     margin-top: 16px;
-    font-size: 32px;
+    font-size: 28px;
+    
     color: white;
+    @media(max-width:1500px){
+      font-size: 24px;
+    }
+    @media(max-width:1100px){
+      font-size: 22px;
+    }
   }
   span{
     color: $primary;
@@ -225,9 +263,26 @@ $secondary:#2c281d;
   scroll-snap-align: start;
   background: $primary;
   display: flex;
-  &inner{
-    display: flex;
+  &Content{
     padding: 48px;
+    @media(max-width:600px){
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    &Outer{
+      display: grid;
+      grid-gap: 2rem;
+      gap: 2rem;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      // grid-template-columns: repeat(3,minmax(1,2fr));
+      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-template-columns: auto auto auto;
+    }
   }
   h2{
     font-weight: 600;
@@ -236,13 +291,12 @@ $secondary:#2c281d;
     font-size: 42px;
     margin: 42px 0 26px 0;
     color: #2c281d;
+    @media(max-width:600px){
+      font-size: 32px;
+      margin: 18px 0 18px 0;
+    }
   }
-  ul{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
+
   li{
     list-style: none;
     margin: 24px 24px 0 24px;  

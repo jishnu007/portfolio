@@ -11,12 +11,10 @@ import shuffle from "../utils/shuffle";
 import { gsap } from "gsap";
 import GlitchedWriter from "glitched-writer";
 // import * from 'scrambling-letters'
-import { randomInt } from "crypto";
-import { lookup } from "dns";
 import ProjectCard from "../components/ProjectCard";
 import ContactMe from "../components/ContactMe";
 import ReactFullpage from "@fullpage/react-fullpage";
-import bgChanger from "../utils/bgChanger";
+import { DynamicCloud } from "../utils/dynamic-cloud";
 
 const Home: NextPage = () => {
   const synonyms: string[] = [
@@ -143,26 +141,41 @@ const Home: NextPage = () => {
         "/UtilizeCore-2.png",
         "/UtilizeCore-3.png",
       ],
-      desc: "sample desc",
+      smalldesc:
+        "An organized workforce will help service management companies achieve new levels of productivity.",
+      desc: "Utilizecore is service managment platform which help Businesses manage thier subcontractor network, clients and locations being serviced more efficiently.",
+      responsibilities: [
+        "Worked as a part of agile team for transforming the legacy code which was written in ROR to the VueJs and make the UI more functional",
+        "Have worked on transforming the design which was provided by the designer to life",
+        "Have worked on different modules like workorders,invoices,timetracker etc..",
+        "Have integrated chargebee payment gateway",
+        "Have worked on login/registeration flow pages",
+      ],
       tags: ["Vue JS", "Vuetify", "Composition API", "TypeScript", "Sass"],
     },
     {
       id: 1,
       title: "Experience",
       images: ["/experianceHome.png", "/experianceInner.png"],
-      desc: "sample desc",
+      smalldesc: "An Experience Management Platform",
+      desc: "Customer Experience rating and search site for Mortgage, Brokers, Loan officers,Real Estate Agents,insurance Agents, Auto Companies, and more!",
+      responsibilities: [
+        "Worked on the distance based search,filter and sorting techniques",
+        "Implemented the rating filter",
+        "Handling the reported bugs",
+      ],
       tags: ["Next JS", "NodeJS", "MongoDB", "Styled Components", "Ant D"],
     },
     {
       id: 2,
-      title: "Security Centric",
-
+      title: "Security Centric Website",
+      smalldesc: "Anytime, Anywhere access to hands-on security trainings.",
+      desc: "Security Centric is a CyberSecurity Enablement company specializing  in Virtualization Education",
       images: [
         "/Security-Centric-1.png",
         "/Security-Centric-2.png",
         "/Security-Centric-2.png",
       ],
-      desc: "sample desc",
       tags: ["Vue JS", "Vuetify", "Composition API", "TypeScript", "Sass"],
     },
     {
@@ -188,6 +201,31 @@ const Home: NextPage = () => {
       element.className = "aos-init aos-animate";
     }
   };
+  const slugs = [
+    "javascript",
+    "nodedotjs",
+    "nextdotjs",
+    "vuedotjs",
+    "express",
+    "vuetify",
+    "quasar",
+    "react",
+    "typescript",
+    "npm",
+    "github",
+    "gitlab",
+    "c++",
+    "mongodb",
+    "html5",
+    "css3",
+    "scss",
+    "sass",
+    "vercel",
+    "visualstudiocode",
+    "antdesign",
+    "jira",
+    "tailwindcss",
+  ];
 
   // const element = document.getElementById("scrambling-text");
   // const writer = new GlitchedWriter(element, {
@@ -251,7 +289,7 @@ const Home: NextPage = () => {
         responsiveWidth={967}
         // normalScrollElements={".aboutsection"}
         // scrollOverflow={true}
-        render={(comp) => (
+        render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <div
               className={[styles.mainSection, "section"].join(" ")}
@@ -292,82 +330,88 @@ const Home: NextPage = () => {
               )}
               data-anchor="about"
             >
-              <div className=" d-flex p-12 ">
-                <p>
-                  👋 Hi, I'm <span>Jishnu</span>
-                </p>
-                <p>
-                  I'm a{" "}
-                  <span>Full Stack Web Developer / Software Engineer</span> from{" "}
-                  <span>kerala</span> Who is passionate about creating
-                  <span> interactive digital experiences</span> on the web as
-                  well as making it dynamic by{" "}
-                  <span>robust web architecture</span>.I love solving problems
-                  and working with <span> React, Vue</span> and other hip
-                  frameworks
-                </p>{" "}
-                <p>
-                  {" "}
-                  I've worked with and for <span>startups</span> like Rayabhari
-                  and Sweans,helped companies like{" "}
-                  <span>Experience, UtilizeCore</span> and{" "}
-                  <span>SecurityCentric</span> by providing{" "}
-                  <span>cutting edge</span> web experiences and technology
-                </p>
-                {/* <p>
+              <div className={styles.aboutSectionContent}>
+                <div className={styles.aboutSectionContentLeft}>
+                  <p>
+                    👋 Hi, I'm <span>Jishnu</span>
+                  </p>
+                  <p>
+                    I'm a{" "}
+                    <span>Full Stack Web Developer / Software Engineer</span>{" "}
+                    from <span>kerala</span> Who is passionate about creating
+                    <span> interactive digital experiences</span> on the web as
+                    well as making it dynamic by{" "}
+                    <span>robust web architecture</span>.I love solving problems
+                    and working with <span> React, Vue</span> and other hip
+                    frameworks
+                  </p>{" "}
+                  <p>
+                    {" "}
+                    I've worked with and for <span>startups</span> like
+                    Rayabhari and Sweans,helped companies like{" "}
+                    <span>Experience, UtilizeCore</span> and{" "}
+                    <span>SecurityCentric</span> by providing{" "}
+                    <span>cutting edge</span> web experiences and technology
+                  </p>
+                  {/* <p>
                   I have <span>2 year</span> experience as a{" "}
                   <span>developer</span> and love solving problems and working
                   with React and other hip frameworks
                 </p> */}
-                <p>
-                  If you fancy a chat feel free to{" "}
-                  <span className={styles.aboutSectionHoverable}>
-                    drop me a line.
-                  </span>
-                </p>
-                <p>
-                  <span>
-                    {" "}
-                    Stay bold & <br />
-                    Have{" "}
-                    <span
-                      className="scrambling-text"
-                      id="scrambling-text"
-                    ></span>
-                    <TextLoop>
-                      {shuffledSynonyms.map(
-                        (synonym: string, index: number) => {
-                          return (
-                            <span key={index}> {prependArticle(synonym)}</span>
-                          );
-                        }
-                      )}
-                    </TextLoop>{" "}
-                    {weekday()}
-                  </span>
-                </p>
+                  <p>
+                    If you fancy a chat feel free to{" "}
+                    <span className={styles.aboutSectionHoverable}>
+                      drop me a line.
+                    </span>
+                  </p>
+                  <p>
+                    <span>
+                      {" "}
+                      Stay bold & <br />
+                      Have{" "}
+                      <span
+                        className="scrambling-text"
+                        id="scrambling-text"
+                      ></span>
+                      <TextLoop>
+                        {shuffledSynonyms.map(
+                          (synonym: string, index: number) => {
+                            return (
+                              <span key={index}>
+                                {" "}
+                                {prependArticle(synonym)}
+                              </span>
+                            );
+                          }
+                        )}
+                      </TextLoop>{" "}
+                      {weekday()}
+                    </span>
+                  </p>
+                </div>
+                <div className={styles.aboutSectionContentRight}>
+                  <DynamicCloud iconSlugs={slugs} />
+                </div>
               </div>
             </div>
             <div
               className={[styles.projectSection, "section"].join(" ")}
               data-anchor="projects"
             >
-              <div className={styles.projectSectionInner}>
-                <h2 data-aos="fade-up">Stuff I’ve worked on 📁</h2>
-                <ul>
+              <div className={styles.projectSectionContent}>
+                <h2>Stuff I’ve worked on 📁</h2>
+                <div className={styles.projectSectionContentOuter}>
                   {projects.map((project: any, index: number) => {
                     return (
-                      <li key={index}>
-                        <ProjectCard
-                          title={project.title}
-                          description={project.desc}
-                          tags={project.tags}
-                          images={project.images}
-                        />
-                      </li>
+                      <ProjectCard
+                        key={index}
+                        data={project}
+                        state={state}
+                        fullpage={fullpageApi}
+                      />
                     );
                   })}
-                </ul>
+                </div>
               </div>
             </div>
             <div

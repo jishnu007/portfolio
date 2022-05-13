@@ -5,7 +5,7 @@ import Styles from "../styles/contactme.module.scss";
 function ContactMe() {
   return (
     <div className={Styles.contactMeInner}>
-      <h3 data-aos="fade-up">Get in Touch</h3>
+      <h3>Get in Touch</h3>
       <div className="contect-me__left">
         {/* <div className="contact-me__phone-sec">
           <h3>Phone</h3>
