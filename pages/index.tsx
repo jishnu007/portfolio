@@ -128,8 +128,8 @@ const Home: NextPage = () => {
   const prependArticle = (word: string) => {
     var vowels = "aeiou";
     var firstLetter = word[0].toLowerCase();
-    if (vowels.indexOf(firstLetter) > -1) return "an " + word;
-    else return "a " + word;
+    if (vowels.indexOf(firstLetter) > -1) return <span>an {word} </span>;
+    else return <span>a {word} </span>;
   };
 
   const projects = [
@@ -177,20 +177,30 @@ const Home: NextPage = () => {
         "/Security-Centric-2.png",
       ],
       tags: ["Vue JS", "Vuetify", "Composition API", "TypeScript", "Sass"],
+      link: "http://www-dev.securitycentric.net/",
     },
     {
       id: 3,
       title: "BlueOcean",
       images: ["/blue-ocean-1.png", "/blue-ocean-1.png", "/blue-ocean-1.png"],
-      desc: "sample desc",
-      tags: ["Next JS", "NodeJS", "MongoDB", "Styled Components", "Ant D"],
+      smalldesc: "e-commerce website",
+      desc: "Blue ocean is one of the largest suppliers of Lab equipments, Glassware and Plasticware throughout India.",
+      responsibilities: [
+        "Implement product order flow",
+        "integrating RazorPay payment gateway integration",
+        "Write RESTful API for CRUD operations for order and products",
+        "API integrations",
+      ],
+      tags: ["Next JS", "NodeJS", "MongoDB", "Ant D"],
+      link: "makethisblue.com",
     },
     {
       id: 4,
-      title: "Security Centric",
-      images: ["/blue-ocean-1.png", "/blue-ocean-1.png", "/blue-ocean-1.png"],
+      title: "Security Centric CRM",
+      images: ["/CRM-3.png", "/CRM-2.png", "/CRM-1.png"],
       desc: "sample desc",
-      tags: ["Next JS", "NodeJS", "MongoDB", "Styled Components", "Ant D"],
+      tags: ["Vue 3", "Quasar", "NodeJS", "MongoDB"],
+      link: "http://crm-dev.securitycentric.net/",
     },
   ];
   const handleAfterLoad = () => {
@@ -364,30 +374,23 @@ const Home: NextPage = () => {
                       drop me a line.
                     </span>
                   </p>
-                  <p>
+                  <div className={styles.aboutSectionLastPara}>
                     <span>
                       {" "}
                       Stay bold & <br />
                       Have{" "}
-                      <span
-                        className="scrambling-text"
-                        id="scrambling-text"
-                      ></span>
-                      <TextLoop>
-                        {shuffledSynonyms.map(
-                          (synonym: string, index: number) => {
-                            return (
-                              <span key={index}>
-                                {" "}
-                                {prependArticle(synonym)}
-                              </span>
-                            );
-                          }
-                        )}
-                      </TextLoop>{" "}
-                      {weekday()}
                     </span>
-                  </p>
+                    <TextLoop>
+                      {shuffledSynonyms.map(
+                        (synonym: string, index: number) => {
+                          return (
+                            <span key={index}>{prependArticle(synonym)}</span>
+                          );
+                        }
+                      )}
+                    </TextLoop>{" "}
+                    <span>{weekday()}</span>
+                  </div>
                 </div>
                 <div className={styles.aboutSectionContentRight}>
                   <DynamicCloud iconSlugs={slugs} />
@@ -399,7 +402,7 @@ const Home: NextPage = () => {
               data-anchor="projects"
             >
               <div className={styles.projectSectionContent}>
-                <h2>Stuff I’ve worked on 📁</h2>
+                <h2>Some Things I’ve Worked On </h2>
                 <div className={styles.projectSectionContentOuter}>
                   {projects.map((project: any, index: number) => {
                     return (

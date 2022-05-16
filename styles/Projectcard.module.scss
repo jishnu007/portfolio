@@ -24,9 +24,13 @@ $secondary:#2c281d;
     break-inside: avoid;
     height: 250px;
     width: 400px;
+    @media screen and (max-width: 1344px) and (min-width: 769px) {
+        height: 230px;
+        width: 375px;
+    }
     img{
         position: absolute;
-        object-fit: cover;
+        // object-fit: cover;
         width: 100% !important;
         height: 100% !important;
         left: 0px !important;
@@ -136,8 +140,9 @@ $secondary:#2c281d;
 
 }
 .projectDrawer{
-
-    flex-grow: 1; 
+    flex-direction: column;
+    flex-grow: 1;
+    display: flex;
 }
 .projectDrawerContent{
     padding: 24px;

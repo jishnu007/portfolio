@@ -33,12 +33,19 @@ $secondary:#2c281d;
     &Content{
         display: flex;
         width: 100%;
+        @media(max-width:969px){
+            flex-direction: column;
+        }
     }
     &Left{
         display: flex;
         flex-direction: column;
         flex: 1;
-        margin-right: 10%;
+        margin-right: 32px;
+        @media(max-width:969px){
+            margin-right: 0;
+            margin-bottom: 16px;
+        }
         input{
             background: rgba(101, 101, 81, 0.3) !important;
             color: #fff;

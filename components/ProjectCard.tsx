@@ -5,6 +5,7 @@ import Styles from "../styles/Projectcard.module.scss";
 import { Drawer, Button, Carousel } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
+import useWindowDimensions from "../utils/useWindowDimensions";
 
 type Project = {
   id: number;
@@ -16,12 +17,17 @@ type Project = {
   tags: string[];
 };
 const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
+  const { height, width }: any = useWindowDimensions();
   const [visible, setVisible] = useState(false);
   const showDrawer = () => {
     setVisible(true);
     console.log(props.state, "helooo...", props.fullpage);
+    if (width < 968) return;
+    // props.fullpage.destroy();
+    props.fullpage.setLockAnchors(true);
     props.fullpage.setAllowScrolling(false);
     props.fullpage.setKeyboardScrolling(false);
+
     // const bodyElement = document.querySelector("body");
     // if (bodyElement) {
     //   bodyElement.style.overflow = "scroll";
@@ -29,8 +35,12 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
   };
   const onClose = () => {
     setVisible(false);
+    if (width < 968) return;
+    props.fullpage.setLockAnchors(false);
+    // props.fullpage.reBuild();
     props.fullpage.setAllowScrolling(true);
     props.fullpage.setKeyboardScrolling(true);
+
     // const bodyElement = document.querySelector("body");
     // if (bodyElement) {
     //   bodyElement.style.overflow = "visible";
@@ -65,7 +75,7 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
         placement="right"
         onClose={onClose}
         closable={true}
-        width={"35%"}
+        width={width && width > 968 ? "35%" : "100%"}
         closeIcon={
           <Icon
             path={mdiArrowLeftThinCircleOutline}
