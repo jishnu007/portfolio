@@ -15,6 +15,7 @@ import ProjectCard from "../components/ProjectCard";
 import ContactMe from "../components/ContactMe";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { DynamicCloud } from "../utils/dynamic-cloud";
+import useWindowDimensions from "../utils/useWindowDimensions";
 
 const Home: NextPage = () => {
   const synonyms: string[] = [
@@ -122,6 +123,7 @@ const Home: NextPage = () => {
     "wondrous",
     "world-class",
   ];
+  const { height, width }: any = useWindowDimensions();
 
   const shuffledSynonyms = shuffle(synonyms);
   const [scramblingText, setScramblingText] = useState(shuffledSynonyms[0]);
@@ -326,6 +328,82 @@ const Home: NextPage = () => {
             );
           }
           handleAfterLoad;
+          if (
+            destination.index == 1 &&
+            direction == "down" &&
+            aboutAnimationCounter < 1 &&
+            width < 967
+          ) {
+            setAboutAnimationCounter(aboutAnimationCounter + 1);
+            const elements = section.querySelectorAll("#aboutpara");
+            const cloud = section.querySelector("#cloud");
+            const textTl = gsap.timeline({
+              defaults: { ease: "SlowMo.easeOut", delay: 0.7 },
+            });
+            tl.fromTo(
+              cloud,
+              0.7,
+              { x: "-70%", opacity: 0 },
+              { x: 0, opacity: 1 }
+            );
+            elements.forEach((element: any) => {
+              tl.fromTo(
+                element,
+                0.5,
+                { y: "50", opacity: 0 },
+                { y: 0, opacity: 1 }
+              );
+            });
+          }
+          if (
+            destination.index == 2 &&
+            direction == "down" &&
+            projectAnimationCounter < 1 &&
+            width < 967
+          ) {
+            setProjectAnimationCounter(projectAnimationCounter + 1);
+            const title = section.querySelector("h2");
+            const projectCards = section.querySelectorAll("#project-card");
+            const tx: any = gsap.timeline({ delay: 0.4 });
+            tl.fromTo(
+              title,
+              0.5,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+            projectCards.forEach((projectCard: any) => {
+              tx.fromTo(
+                projectCard,
+                0.4,
+                { y: "50", opacity: 0 },
+                { y: 0, opacity: 1 }
+              );
+            });
+          }
+          if (
+            destination.index == 3 &&
+            direction == "down" &&
+            contactAnimationCounter < 1 &&
+            width < 967
+          ) {
+            setContactAnimationCounter(contactAnimationCounter + 1);
+            const title = section.querySelector("h3");
+            const socailIcons = section.querySelectorAll("#social-icon");
+            tl.fromTo(
+              title,
+              0.5,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+            socailIcons.forEach((socailIcon: any) => {
+              tl.fromTo(
+                socailIcon,
+                0.4,
+                { y: "50", opacity: 0 },
+                { y: 0, opacity: 1 }
+              );
+            });
+          }
         }}
         easing="easeInOutCubic"
         easingcss3="ease"
@@ -337,33 +415,11 @@ const Home: NextPage = () => {
           const section = destination.item;
           console.log(destination, "dest", section);
           const tl: any = gsap.timeline({ delay: 0.4 });
-          // if (destination.index == 0) {
-          //   const title = section.querySelector("h2");
-          //   const subTitle = section.querySelector("p");
-          //   const circle = section.querySelector("#circle");
-          //   tl.fromTo(
-          //     circle,
-          //     0.5,
-          //     { y: "50", opacity: 0 },
-          //     { y: 0, opacity: 1 }
-          //   );
-          //   tl.fromTo(
-          //     title,
-          //     0.5,
-          //     { y: "50", opacity: 0 },
-          //     { y: 0, opacity: 1 }
-          //   );
-          //   tl.fromTo(
-          //     subTitle,
-          //     0.6,
-          //     { y: "50", opacity: 0 },
-          //     { y: 0, opacity: 1 }
-          //   );
-          // }
           if (
             destination.index == 1 &&
             direction == "down" &&
-            aboutAnimationCounter < 1
+            aboutAnimationCounter < 1 &&
+            width > 967
           ) {
             setAboutAnimationCounter(aboutAnimationCounter + 1);
             const elements = section.querySelectorAll("#aboutpara");
@@ -389,7 +445,8 @@ const Home: NextPage = () => {
           if (
             destination.index == 2 &&
             direction == "down" &&
-            projectAnimationCounter < 1
+            projectAnimationCounter < 1 &&
+            width > 967
           ) {
             setProjectAnimationCounter(projectAnimationCounter + 1);
             const title = section.querySelector("h2");
@@ -401,7 +458,7 @@ const Home: NextPage = () => {
               { y: "50", opacity: 0 },
               { y: 0, opacity: 1 }
             );
-            projectCards.forEach((projectCard) => {
+            projectCards.forEach((projectCard: any) => {
               tx.fromTo(
                 projectCard,
                 0.4,
@@ -413,7 +470,8 @@ const Home: NextPage = () => {
           if (
             destination.index == 3 &&
             direction == "down" &&
-            contactAnimationCounter < 1
+            contactAnimationCounter < 1 &&
+            width > 967
           ) {
             setContactAnimationCounter(contactAnimationCounter + 1);
             const title = section.querySelector("h3");
@@ -424,7 +482,7 @@ const Home: NextPage = () => {
               { y: "50", opacity: 0 },
               { y: 0, opacity: 1 }
             );
-            socailIcons.forEach((socailIcon) => {
+            socailIcons.forEach((socailIcon: any) => {
               tl.fromTo(
                 socailIcon,
                 0.4,
@@ -570,6 +628,27 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-function randomFromArray(chars: string[]): any {
-  throw new Error("Function not implemented.");
-}
+
+// if (destination.index == 0) {
+//   const title = section.querySelector("h2");
+//   const subTitle = section.querySelector("p");
+//   const circle = section.querySelector("#circle");
+//   tl.fromTo(
+//     circle,
+//     0.5,
+//     { y: "50", opacity: 0 },
+//     { y: 0, opacity: 1 }
+//   );
+//   tl.fromTo(
+//     title,
+//     0.5,
+//     { y: "50", opacity: 0 },
+//     { y: 0, opacity: 1 }
+//   );
+//   tl.fromTo(
+//     subTitle,
+//     0.6,
+//     { y: "50", opacity: 0 },
+//     { y: 0, opacity: 1 }
+//   );
+// }
