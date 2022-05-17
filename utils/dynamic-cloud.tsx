@@ -45,11 +45,11 @@ export type DynamicCloudProps = {
   iconSlugs: string[];
 };
 
-type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
+// type IconData = any;
 
 export const DynamicCloud = (props: DynamicCloudProps) => {
   const color = "#fff";
-  const [data, setData] = React.useState<IconData>();
+  const [data, setData] = React.useState<any>();
   React.useEffect(() => {
     fetchSimpleIcons({ slugs: props.iconSlugs }).then(setData);
   }, [props.iconSlugs]);
