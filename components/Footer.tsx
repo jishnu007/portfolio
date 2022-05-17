@@ -5,6 +5,7 @@ function Footer() {
   return (
     <div className={Styles.footer}>
       <a
+        id="social-icon"
         href="#"
         className={[Styles.footer__iconWrapper, Styles.footer__facebook].join(
           " "
@@ -16,6 +17,7 @@ function Footer() {
       </a>
 
       <a
+        id="social-icon"
         href="#"
         className={[Styles.footer__iconWrapper, Styles.footer__instagram].join(
           " "
@@ -26,6 +28,7 @@ function Footer() {
         </span>
       </a>
       <a
+        id="social-icon"
         href="#"
         className={[Styles.footer__iconWrapper, Styles.footer__linkedin].join(
           " "
@@ -36,6 +39,7 @@ function Footer() {
         </span>
       </a>
       <a
+        id="social-icon"
         href="#"
         className={[Styles.footer__iconWrapper, Styles.footer__github].join(
           " "

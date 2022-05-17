@@ -6,23 +6,25 @@ function ContactMe() {
   return (
     <div className={Styles.contactMeInner}>
       <h3>Get in Touch</h3>
+      {/* <div className="flex"> */}
       <div className="contect-me__left">
         {/* <div className="contact-me__phone-sec">
-          <h3>Phone</h3>
-          <p>7012532364</p>
-        </div>
-        <div className="contact-me__address-sec">
-          <h3>Address</h3>
-          <p>7012532364</p>
-        </div>
-        <div className="contact-me__social-sec">
-          <h3>Email</h3>
-          <p>jishnupavithran007@gmail.com</p>
-        </div> */}
+            <h4>Phone</h4>
+            <p>7012532364</p>
+          </div>
+          <div className="contact-me__address-sec">
+            <h4>Address</h4>
+            <p>7012532364</p>
+          </div>
+          <div className="contact-me__social-sec">
+            <h4>Email</h4>
+            <p>jishnupavithran007@gmail.com</p>
+          </div> */}
       </div>
       <div className="contect-me__right ">
         <ContactForm />
       </div>
+      {/* </div> */}
       <Footer />
     </div>
   );

@@ -28,6 +28,18 @@ $secondary:#2c281d;
         height: 230px;
         width: 375px;
     }
+    @media(max-width:500px){
+        height: 210px;
+        width: 350px;
+    }
+    @media(max-width:420px){
+        height: 195px;
+        width: 320px;
+    }
+    @media(max-width:350px){
+        height: 180px;
+        width: 280px;
+    }
     img{
         position: absolute;
         // object-fit: cover;

@@ -125,6 +125,10 @@ const Home: NextPage = () => {
 
   const shuffledSynonyms = shuffle(synonyms);
   const [scramblingText, setScramblingText] = useState(shuffledSynonyms[0]);
+  const [aboutAnimationCounter, setAboutAnimationCounter] = useState(0);
+  const [projectAnimationCounter, setProjectAnimationCounter] = useState(0);
+  const [contactAnimationCounter, setContactAnimationCounter] = useState(0);
+
   const prependArticle = (word: string) => {
     var vowels = "aeiou";
     var firstLetter = word[0].toLowerCase();
@@ -203,7 +207,12 @@ const Home: NextPage = () => {
       link: "http://crm-dev.securitycentric.net/",
     },
   ];
-  const handleAfterLoad = () => {
+  const handleAfterLoad = (
+    origin: any,
+    destination: any,
+    direction: any,
+    trigger: any
+  ) => {
     const element = document.querySelectorAll(
       ".fp-section.active .aos-init"
     )[0];
@@ -290,13 +299,141 @@ const Home: NextPage = () => {
       <ReactFullpage
         navigation={false}
         licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
-        afterLoad={handleAfterLoad}
+        afterLoad={(origin: any, destination: any, direction: any) => {
+          const section = destination.item;
+          let tl: any = gsap.timeline({ delay: 0.4 });
+          if (destination.index == 0 && direction == null) {
+            const title = section.querySelector("h2");
+            const subTitle = section.querySelector("p");
+            const circle = section.querySelector("#circle");
+            tl.fromTo(
+              circle,
+              0.5,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+            tl.fromTo(
+              title,
+              0.5,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+            tl.fromTo(
+              subTitle,
+              0.6,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+          }
+          handleAfterLoad;
+        }}
         easing="easeInOutCubic"
         easingcss3="ease"
         fadingEffect={true}
         fitToSection={false}
         anchors={["home", "about", "projects", "contact"]}
         responsiveWidth={967}
+        onLeave={(origin, destination, direction) => {
+          const section = destination.item;
+          console.log(destination, "dest", section);
+          const tl: any = gsap.timeline({ delay: 0.4 });
+          // if (destination.index == 0) {
+          //   const title = section.querySelector("h2");
+          //   const subTitle = section.querySelector("p");
+          //   const circle = section.querySelector("#circle");
+          //   tl.fromTo(
+          //     circle,
+          //     0.5,
+          //     { y: "50", opacity: 0 },
+          //     { y: 0, opacity: 1 }
+          //   );
+          //   tl.fromTo(
+          //     title,
+          //     0.5,
+          //     { y: "50", opacity: 0 },
+          //     { y: 0, opacity: 1 }
+          //   );
+          //   tl.fromTo(
+          //     subTitle,
+          //     0.6,
+          //     { y: "50", opacity: 0 },
+          //     { y: 0, opacity: 1 }
+          //   );
+          // }
+          if (
+            destination.index == 1 &&
+            direction == "down" &&
+            aboutAnimationCounter < 1
+          ) {
+            setAboutAnimationCounter(aboutAnimationCounter + 1);
+            const elements = section.querySelectorAll("#aboutpara");
+            const cloud = section.querySelector("#cloud");
+            const textTl = gsap.timeline({
+              defaults: { ease: "SlowMo.easeOut", delay: 0.7 },
+            });
+            tl.fromTo(
+              cloud,
+              0.7,
+              { x: "-70%", opacity: 0 },
+              { x: 0, opacity: 1 }
+            );
+            elements.forEach((element) => {
+              tl.fromTo(
+                element,
+                0.5,
+                { y: "50", opacity: 0 },
+                { y: 0, opacity: 1 }
+              );
+            });
+          }
+          if (
+            destination.index == 2 &&
+            direction == "down" &&
+            projectAnimationCounter < 1
+          ) {
+            setProjectAnimationCounter(projectAnimationCounter + 1);
+            const title = section.querySelector("h2");
+            const projectCards = section.querySelectorAll("#project-card");
+            const tx: any = gsap.timeline({ delay: 0.4 });
+            tl.fromTo(
+              title,
+              0.5,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+            projectCards.forEach((projectCard) => {
+              tx.fromTo(
+                projectCard,
+                0.4,
+                { y: "50", opacity: 0 },
+                { y: 0, opacity: 1 }
+              );
+            });
+          }
+          if (
+            destination.index == 3 &&
+            direction == "down" &&
+            contactAnimationCounter < 1
+          ) {
+            setContactAnimationCounter(contactAnimationCounter + 1);
+            const title = section.querySelector("h3");
+            const socailIcons = section.querySelectorAll("#social-icon");
+            tl.fromTo(
+              title,
+              0.5,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
+            socailIcons.forEach((socailIcon) => {
+              tl.fromTo(
+                socailIcon,
+                0.4,
+                { y: "50", opacity: 0 },
+                { y: 0, opacity: 1 }
+              );
+            });
+          }
+        }}
         // normalScrollElements={".aboutsection"}
         // scrollOverflow={true}
         render={({ state, fullpageApi }) => (
@@ -306,7 +443,10 @@ const Home: NextPage = () => {
               data-anchor=""
             >
               <div className={styles.mainSection__rightCircle}>
-                <div className={styles.mainSection__rightCircleImage}>
+                <div
+                  className={styles.mainSection__rightCircleImage}
+                  id="circle"
+                >
                   <img src="/myself.png" alt="bg" />
                 </div>
               </div>
@@ -342,20 +482,20 @@ const Home: NextPage = () => {
             >
               <div className={styles.aboutSectionContent}>
                 <div className={styles.aboutSectionContentLeft}>
-                  <p>
+                  <p id="aboutpara">
                     👋 Hi, I'm <span>Jishnu</span>
                   </p>
-                  <p>
+                  <p id="aboutpara">
                     I'm a{" "}
-                    <span>Full Stack Web Developer / Software Engineer</span>{" "}
-                    from <span>kerala</span> Who is passionate about creating
+                    <span>Full Stack Web Developer / Software Engineer</span>. I
+                    Love creating
                     <span> interactive digital experiences</span> on the web as
                     well as making it dynamic by{" "}
-                    <span>robust web architecture</span>.I love solving problems
-                    and working with <span> React, Vue</span> and other hip
-                    frameworks
+                    <span>robust web architecture</span>.I enjoy solving
+                    problems and working with <span>JavaScript</span> and its
+                    hip frameworks like React ,Vue
                   </p>{" "}
-                  <p>
+                  <p id="aboutpara">
                     {" "}
                     I've worked with and for <span>startups</span> like
                     Rayabhari and Sweans,helped companies like{" "}
@@ -363,18 +503,14 @@ const Home: NextPage = () => {
                     <span>SecurityCentric</span> by providing{" "}
                     <span>cutting edge</span> web experiences and technology
                   </p>
-                  {/* <p>
-                  I have <span>2 year</span> experience as a{" "}
-                  <span>developer</span> and love solving problems and working
-                  with React and other hip frameworks
-                </p> */}
-                  <p>
+                  {/* <p>Learning Web3</p> */}
+                  <p id="aboutpara">
                     If you fancy a chat feel free to{" "}
                     <span className={styles.aboutSectionHoverable}>
                       drop me a line.
                     </span>
                   </p>
-                  <div className={styles.aboutSectionLastPara}>
+                  <div className={styles.aboutSectionLastPara} id="aboutpara">
                     <span>
                       {" "}
                       Stay bold & <br />
@@ -392,7 +528,7 @@ const Home: NextPage = () => {
                     <span>{weekday()}</span>
                   </div>
                 </div>
-                <div className={styles.aboutSectionContentRight}>
+                <div className={styles.aboutSectionContentRight} id="cloud">
                   <DynamicCloud iconSlugs={slugs} />
                 </div>
               </div>
@@ -403,7 +539,10 @@ const Home: NextPage = () => {
             >
               <div className={styles.projectSectionContent}>
                 <h2>Some Things I’ve Worked On </h2>
-                <div className={styles.projectSectionContentOuter}>
+                <div
+                  className={styles.projectSectionContentOuter}
+                  id="project-card"
+                >
                   {projects.map((project: any, index: number) => {
                     return (
                       <ProjectCard

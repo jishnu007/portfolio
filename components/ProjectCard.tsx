@@ -55,7 +55,11 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
   };
   return (
     <>
-      <div className={Styles.projectCard} onClick={showDrawer}>
+      <div
+        className={Styles.projectCard}
+        onClick={showDrawer}
+        id="project-card"
+      >
         <img src={props.data.images[0]} alt={props.data.images[0]} />
         <div className={Styles.cardOverlay}>
           <h3>{props.data.title}</h3>
@@ -101,7 +105,7 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
             </Carousel>
             <h4>About</h4>
             <p>{props.data.desc}</p>
-            <h4>Responsibilities</h4>
+            <h4>What I Have Done</h4>
             <ul className="resps">
               {props.data.responsibilities &&
                 props.data.responsibilities.map(
