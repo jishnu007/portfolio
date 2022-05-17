@@ -303,7 +303,7 @@ const Home: NextPage = () => {
         licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
         afterLoad={(origin: any, destination: any, direction: any) => {
           const section = destination.item;
-          let tl: any = gsap.timeline({ delay: 0.4 });
+          let tl: any = gsap.timeline({ delay: width > 967 ? 0.4 : 0 });
           if (destination.index == 0 && direction == null) {
             const title = section.querySelector("h2");
             const subTitle = section.querySelector("p");
@@ -328,82 +328,6 @@ const Home: NextPage = () => {
             );
           }
           handleAfterLoad;
-          if (
-            destination.index == 1 &&
-            direction == "down" &&
-            aboutAnimationCounter < 1 &&
-            width < 967
-          ) {
-            setAboutAnimationCounter(aboutAnimationCounter + 1);
-            const elements = section.querySelectorAll("#aboutpara");
-            const cloud = section.querySelector("#cloud");
-            const textTl = gsap.timeline({
-              defaults: { ease: "SlowMo.easeOut", delay: 0.7 },
-            });
-            tl.fromTo(
-              cloud,
-              0.7,
-              { x: "-70%", opacity: 0 },
-              { x: 0, opacity: 1 }
-            );
-            elements.forEach((element: any) => {
-              tl.fromTo(
-                element,
-                0.5,
-                { y: "50", opacity: 0 },
-                { y: 0, opacity: 1 }
-              );
-            });
-          }
-          if (
-            destination.index == 2 &&
-            direction == "down" &&
-            projectAnimationCounter < 1 &&
-            width < 967
-          ) {
-            setProjectAnimationCounter(projectAnimationCounter + 1);
-            const title = section.querySelector("h2");
-            const projectCards = section.querySelectorAll("#project-card");
-            const tx: any = gsap.timeline({ delay: 0.4 });
-            tl.fromTo(
-              title,
-              0.5,
-              { y: "50", opacity: 0 },
-              { y: 0, opacity: 1 }
-            );
-            projectCards.forEach((projectCard: any) => {
-              tx.fromTo(
-                projectCard,
-                0.4,
-                { y: "50", opacity: 0 },
-                { y: 0, opacity: 1 }
-              );
-            });
-          }
-          if (
-            destination.index == 3 &&
-            direction == "down" &&
-            contactAnimationCounter < 1 &&
-            width < 967
-          ) {
-            setContactAnimationCounter(contactAnimationCounter + 1);
-            const title = section.querySelector("h3");
-            const socailIcons = section.querySelectorAll("#social-icon");
-            tl.fromTo(
-              title,
-              0.5,
-              { y: "50", opacity: 0 },
-              { y: 0, opacity: 1 }
-            );
-            socailIcons.forEach((socailIcon: any) => {
-              tl.fromTo(
-                socailIcon,
-                0.4,
-                { y: "50", opacity: 0 },
-                { y: 0, opacity: 1 }
-              );
-            });
-          }
         }}
         easing="easeInOutCubic"
         easingcss3="ease"
@@ -411,10 +335,16 @@ const Home: NextPage = () => {
         fitToSection={false}
         anchors={["home", "about", "projects", "contact"]}
         responsiveWidth={967}
+        // lockAnchors={true}
+        loopBottom={false}
+        loopTop={false}
+        // beforeLeave={(origin: any, destination: any, direction: any) => {
+        //   console.log("in bofore leave..............");
+        // }}
         onLeave={(origin, destination, direction) => {
           const section = destination.item;
           console.log(destination, "dest", section);
-          const tl: any = gsap.timeline({ delay: 0.4 });
+          const tl: any = gsap.timeline({ delay: width > 967 ? 0.4 : 0 });
           if (
             destination.index == 1 &&
             direction == "down" &&
