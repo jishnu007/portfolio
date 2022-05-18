@@ -139,7 +139,7 @@ $secondary:#2c281d;
 // }
 .projectLink{
    
-    position: sticky;
+    position: sticky !important;
     bottom: 0;
     width: 100%;
     display: flex;
@@ -149,6 +149,7 @@ $secondary:#2c281d;
     color: white;
     background: #2c281d;
     overflow: auto;
+    cursor: pointer !important;
 
 }
 .projectDrawer{

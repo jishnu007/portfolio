@@ -6,7 +6,9 @@ function Footer() {
     <div className={Styles.footer}>
       <a
         id="social-icon"
-        href="#"
+        target="_blank"
+        rel="noreferrer"
+        href="https://www.facebook.com/jishnu.pavithran.3"
         className={[Styles.footer__iconWrapper, Styles.footer__facebook].join(
           " "
         )}
@@ -18,7 +20,9 @@ function Footer() {
 
       <a
         id="social-icon"
-        href="#"
+        href="https://www.instagram.com/jishnu__pavithran/"
+        target="_blank"
+        rel="noreferrer"
         className={[Styles.footer__iconWrapper, Styles.footer__instagram].join(
           " "
         )}
@@ -29,7 +33,9 @@ function Footer() {
       </a>
       <a
         id="social-icon"
-        href="#"
+        href="https://www.linkedin.com/in/jishnu-pavithran/"
+        target="_blank"
+        rel="noreferrer"
         className={[Styles.footer__iconWrapper, Styles.footer__linkedin].join(
           " "
         )}
@@ -40,7 +46,9 @@ function Footer() {
       </a>
       <a
         id="social-icon"
-        href="#"
+        href="https://github.com/jishnu007"
+        target="_blank"
+        rel="noreferrer"
         className={[Styles.footer__iconWrapper, Styles.footer__github].join(
           " "
         )}

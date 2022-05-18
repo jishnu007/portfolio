@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 import Styles from "../styles/Projectcard.module.scss";
 import { Drawer, Button, Carousel } from "antd";
 import Icon from "@mdi/react";
@@ -15,6 +17,7 @@ type Project = {
   desc: string;
   responsibilities: string[];
   tags: string[];
+  link: string;
 };
 const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
   const { height, width }: any = useWindowDimensions();
@@ -125,7 +128,14 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
               })}
             </div>
           </div>
-          <div className={Styles.projectLink}>Open Project</div>
+          <a
+            href={props.data.link}
+            target="_blank"
+            rel="noreferrer"
+            className={Styles.projectLink}
+          >
+            Open Project
+          </a>
         </div>
       </Drawer>
     </>
