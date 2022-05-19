@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ErrorMessage } from "@hookform/error-message";
 import Styles from "../styles/contactme.module.scss";
-// import { useToast } from "../hooks/useToast";
+import { notification } from "antd";
 
 export default function ContactForm() {
   //   const toast = useToast();
@@ -22,7 +22,6 @@ export default function ContactForm() {
   const router = useRouter();
 
   async function onSubmitForm(values: any) {
-    console.log(values);
     let config = {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
@@ -35,14 +34,21 @@ export default function ContactForm() {
     try {
       const response = await axios(config);
       console.log(response);
-      // if (response.status == 200) {
-      //   reset();
-      //   toast(
-      //     "success",
-      //     "Thank you for contacting us, we will be in touch soon."
-      //   );
-      // }
-    } catch (err) {}
+      if (response.status == 200) {
+        reset();
+        notification["success"]({
+          message: "Message has been successfully send ",
+          // description:
+          //   "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+        });
+      }
+    } catch (err) {
+      console.log(err, "erorr");
+      notification["error"]({
+        message: "Can't send the message something went wrong",
+        description: err as any,
+      });
+    }
   }
 
   return (
@@ -54,13 +60,19 @@ export default function ContactForm() {
         >
           <div className={Styles.ContactFormCardContent}>
             <div className={Styles.ContactFormCardLeft}>
-              <div>
+              <div className={errors.name ? "mb-0" : "mb-4"}>
                 <label htmlFor="name" className="sr-only">
                   Full name
                 </label>
                 <input
                   type="text"
-                  {...register("name", { required: "This is required" })}
+                  {...register("name", {
+                    required: "This is required",
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: "Please enter a valid email",
+                    },
+                  })}
                   className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${
                     errors.name ? "ring-2 ring-red-500" : null
                   }`}
@@ -75,7 +87,7 @@ export default function ContactForm() {
                   )}
                 />
               </div>
-              <div>
+              <div className={errors.email ? "mb-0" : "mb-4"}>
                 <label htmlFor="email" className="sr-only">
                   Email
                 </label>
@@ -95,7 +107,7 @@ export default function ContactForm() {
                   )}
                 />
               </div>
-              <div>
+              <div className="mb-4">
                 <label htmlFor="phone" className="sr-only">
                   Phone
                 </label>
