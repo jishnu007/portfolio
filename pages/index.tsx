@@ -123,7 +123,6 @@ const Home: NextPage = () => {
   const { height, width }: any = useWindowDimensions();
 
   const shuffledSynonyms = shuffle(synonyms);
-  const [scramblingText, setScramblingText] = useState(shuffledSynonyms[0]);
   const [aboutAnimationCounter, setAboutAnimationCounter] = useState(0);
   const [projectAnimationCounter, setProjectAnimationCounter] = useState(0);
   const [contactAnimationCounter, setContactAnimationCounter] = useState(0);
@@ -228,12 +227,7 @@ const Home: NextPage = () => {
       link: "http://crm-dev.securitycentric.net/",
     },
   ];
-  const handleAfterLoad = (
-    origin: any,
-    destination: any,
-    direction: any,
-    trigger: any
-  ) => {
+  const handleAfterLoad = () => {
     const element = document.querySelectorAll(
       ".fp-section.active .aos-init"
     )[0];
@@ -279,12 +273,14 @@ const Home: NextPage = () => {
         navigation={false}
         licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
         afterLoad={(origin: any, destination: any, direction: any) => {
+          handleAfterLoad;
           const section = destination.item;
           let tl: any = gsap.timeline({ delay: width > 967 ? 0.4 : 0 });
           if (destination.index == 0 && direction == null) {
             const title = section.querySelector("h2");
             const subTitle = section.querySelector("p");
             const circle = section.querySelector("#circle");
+            const mouse = section.querySelector("#mouse");
             tl.fromTo(
               circle,
               0.5,
@@ -303,8 +299,13 @@ const Home: NextPage = () => {
               { y: "50", opacity: 0 },
               { y: 0, opacity: 1 }
             );
+            tl.fromTo(
+              mouse,
+              0.6,
+              { y: "50", opacity: 0 },
+              { y: 0, opacity: 1 }
+            );
           }
-          handleAfterLoad;
         }}
         easing="easeInOutCubic"
         easingcss3="ease"
@@ -354,14 +355,14 @@ const Home: NextPage = () => {
             tl.fromTo(
               title,
               0.5,
-              { y: "50", opacity: 0 },
+              { y: "30", opacity: 0 },
               { y: 0, opacity: 1 }
             );
             projectCards.forEach((projectCard: any) => {
               tx.fromTo(
                 projectCard,
-                0.4,
-                { y: "50", opacity: 0 },
+                0.5,
+                { y: "30", opacity: 0 },
                 { y: 0, opacity: 1 }
               );
             });
@@ -378,14 +379,14 @@ const Home: NextPage = () => {
             tl.fromTo(
               title,
               0.5,
-              { y: "50", opacity: 0 },
+              { y: "30", opacity: 0 },
               { y: 0, opacity: 1 }
             );
             socailIcons.forEach((socailIcon: any) => {
               tl.fromTo(
                 socailIcon,
                 0.4,
-                { y: "50", opacity: 0 },
+                { y: "20", opacity: 0 },
                 { y: 0, opacity: 1 }
               );
             });
@@ -393,10 +394,7 @@ const Home: NextPage = () => {
         }}
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
-            <div
-              className={[styles.mainSection, "section"].join(" ")}
-              data-anchor=""
-            >
+            <div className={[styles.mainSection, "section"].join(" ")}>
               <div className={styles.mainSection__rightCircle}>
                 <div
                   className={styles.mainSection__rightCircleImage}
@@ -427,6 +425,15 @@ const Home: NextPage = () => {
                 >
                   {/* <StarterImage /> */}
                 </div>
+                {width > 967 && (
+                  <a
+                    href="#about"
+                    className="scroll-down mouse effect1"
+                    id="mouse"
+                  >
+                    <span></span>
+                  </a>
+                )}
               </div>
             </div>
             <div

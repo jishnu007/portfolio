@@ -52,22 +52,42 @@ const Navbar = () => {
         className="navbar__logo flex"
         data-aos="fade-down"
         data-aos-easing="linear"
-        data-aos-duration="700"
+        data-aos-duration="600"
       >
         <Image src={Logo} alt="logo" width={180} height={90} />
       </div>
 
       <ul className="navbar__nav flex text-center items-center font-bold text-xl">
-        <li className="px-8">
+        <li
+          className="px-8"
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="600"
+        >
           <a href="#home">Home</a>{" "}
         </li>
-        <li className="px-8">
+        <li
+          className="px-8"
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="700"
+        >
           <a href="#about">About</a>{" "}
         </li>
-        <li className="px-8">
+        <li
+          className="px-8"
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="800"
+        >
           <a href="#projects">Projects</a>
         </li>
-        <li className="px-8">
+        <li
+          className="px-8"
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="900"
+        >
           <a href="#contact">Contact</a>
         </li>
       </ul>
@@ -75,6 +95,9 @@ const Navbar = () => {
         <button
           className={visible ? "resume-btn active" : "resume-btn"}
           onClick={showDrawer}
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1100"
         >
           Resume
         </button>
