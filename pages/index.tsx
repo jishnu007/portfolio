@@ -402,7 +402,7 @@ const Home: NextPage = () => {
                   className={styles.mainSection__rightCircleImage}
                   id="circle"
                 >
-                  <img src="/myself.png" alt="bg" />
+                  <img src="/myself.webp" alt="bg" />
                 </div>
               </div>
               <div className={styles.mainSection__container}>
