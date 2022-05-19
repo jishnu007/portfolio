@@ -2,15 +2,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import styles from "../styles/Home.module.scss";
-import StarterImage from "../components/StarterImage";
 import TextLoop from "react-text-loop";
 import weekday from "../utils/weekday";
 import shuffle from "../utils/shuffle";
 import { gsap } from "gsap";
-import GlitchedWriter from "glitched-writer";
-// import * from 'scrambling-letters'
 import ProjectCard from "../components/ProjectCard";
 import ContactMe from "../components/ContactMe";
 import ReactFullpage from "@fullpage/react-fullpage";
@@ -143,9 +140,9 @@ const Home: NextPage = () => {
       id: 0,
       title: "Utilizecore",
       images: [
-        "/UtilizeCore-1.png",
-        "/UtilizeCore-2.png",
-        "/UtilizeCore-3.png",
+        "/UtilizeCore-1.webp",
+        "/UtilizeCore-2.webp",
+        "/UtilizeCore-3.webp",
       ],
       smalldesc:
         "A game-changing platform that has reshaped service management processes.",
@@ -165,7 +162,7 @@ const Home: NextPage = () => {
     {
       id: 1,
       title: "Experience",
-      images: ["/experianceHome.png", "/experianceInner.png"],
+      images: ["/experianceHome.webp", "/experianceInner.webp"],
       smalldesc: "Experience Management Platform",
       desc: "Customer Experience rating and search site for Mortgage, Brokers, Loan officers,Real Estate Agents,insurance Agents, Auto Companies, and more!",
       responsibilities: [
@@ -182,9 +179,9 @@ const Home: NextPage = () => {
       smalldesc: "Anytime, Anywhere access to hands-on security trainings.",
       desc: "Security Centric is a CyberSecurity Enablement company specializing  in Virtualization Education",
       images: [
-        "/Security-Centric-1.png",
-        "/Security-Centric-2.png",
-        "/Security-Centric-2.png",
+        "/Security-Centric-1.webp",
+        "/Security-Centric-2.webp",
+        "/Security-Centric-2.webp",
       ],
       responsibilities: [
         "Build the project from scratch",
@@ -198,11 +195,11 @@ const Home: NextPage = () => {
       id: 3,
       title: "BlueOcean",
       images: [
-        "/blue-ocean-2.png",
-        "/blue-ocean-1.png",
-        "/blue-ocean-3.png",
-        "/blue-ocean-4.png",
-        "/blue-ocean-5.png",
+        "/blue-ocean-2.webp",
+        "/blue-ocean-1.webp",
+        "/blue-ocean-3.webp",
+        "/blue-ocean-4.webp",
+        "/blue-ocean-5.webp",
       ],
       smalldesc: "e-commerce website",
       desc: "Blue ocean is one of the largest suppliers of Lab equipments, Glassware and Plasticware throughout India.",
@@ -218,7 +215,7 @@ const Home: NextPage = () => {
     {
       id: 4,
       title: "Security Centric CRM",
-      images: ["/CRM-3.png", "/CRM-2.png", "/CRM-1.png"],
+      images: ["/CRM-3.webp", "/CRM-2.webp", "/CRM-1.webp"],
       smalldesc: "Anytime, Anywhere access to hands-on security trainings.",
       desc: "Its a data entry platform for Security centric users to add,view and  edit their clients details",
       responsibilities: [
@@ -257,11 +254,9 @@ const Home: NextPage = () => {
     "npm",
     "github",
     "gitlab",
-    "c++",
     "mongodb",
     "html5",
     "css3",
-    "scss",
     "sass",
     "vercel",
     "visualstudiocode",
@@ -269,47 +264,6 @@ const Home: NextPage = () => {
     "jira",
     "tailwindcss",
   ];
-
-  // const element = document.getElementById("scrambling-text");
-  // const writer = new GlitchedWriter(element, {
-  //   interval: [10, 70],
-  //   oneAtATime: true,
-  //   letterize: true,
-  // });
-  // useEffect(() => {
-  //   const tl5 = gsap.to(".scrambling-text", {
-  //     scrambleText: {
-  //       text: scramblingText,
-  //       tweenLength: false,
-  //       speed: 1,
-  //       revealDelay: 2.5,
-  //       chars: "lowercase",
-  //       newClass: "after",
-  //     },
-  //     duration: 5,
-  //     ease: "none",
-  //   });
-  // }, [scramblingText]);
-  // const MINUTE_MS = 2500;
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const tl5 = gsap.to(".scrambling-text", {
-  //       scrambleText: {
-  //         text: "abc",
-  //         tweenLength: false,
-  //         speed: 1,
-  //         revealDelay: 2.5,
-  //         chars: "lowercase",
-  //         newClass: "after",
-  //       },
-  //       duration: 5,
-  //       ease: "none",
-  //     });
-  //   }, MINUTE_MS);
-
-  //   return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-  // }, []);
 
   return (
     <>
@@ -358,15 +312,10 @@ const Home: NextPage = () => {
         fitToSection={false}
         anchors={["home", "about", "projects", "contact"]}
         responsiveWidth={967}
-        // lockAnchors={true}
         loopBottom={false}
         loopTop={false}
-        // beforeLeave={(origin: any, destination: any, direction: any) => {
-        //   console.log("in bofore leave..............");
-        // }}
         onLeave={(origin, destination, direction) => {
           const section = destination.item;
-          console.log(destination, "dest", section);
           const tl: any = gsap.timeline({ delay: width > 967 ? 0.4 : 0 });
           if (
             destination.index == 1 &&
@@ -377,9 +326,6 @@ const Home: NextPage = () => {
             setAboutAnimationCounter(aboutAnimationCounter + 1);
             const elements = section.querySelectorAll("#aboutpara");
             const cloud = section.querySelector("#cloud");
-            const textTl = gsap.timeline({
-              defaults: { ease: "SlowMo.easeOut", delay: 0.7 },
-            });
             tl.fromTo(
               cloud,
               0.7,
@@ -445,8 +391,6 @@ const Home: NextPage = () => {
             });
           }
         }}
-        // normalScrollElements={".aboutsection"}
-        // scrollOverflow={true}
         render={({ state, fullpageApi }) => (
           <ReactFullpage.Wrapper>
             <div
@@ -581,27 +525,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-// if (destination.index == 0) {
-//   const title = section.querySelector("h2");
-//   const subTitle = section.querySelector("p");
-//   const circle = section.querySelector("#circle");
-//   tl.fromTo(
-//     circle,
-//     0.5,
-//     { y: "50", opacity: 0 },
-//     { y: 0, opacity: 1 }
-//   );
-//   tl.fromTo(
-//     title,
-//     0.5,
-//     { y: "50", opacity: 0 },
-//     { y: 0, opacity: 1 }
-//   );
-//   tl.fromTo(
-//     subTitle,
-//     0.6,
-//     { y: "50", opacity: 0 },
-//     { y: 0, opacity: 1 }
-//   );
-// }

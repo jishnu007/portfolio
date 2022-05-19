@@ -6,7 +6,6 @@ import Styles from "../styles/contactme.module.scss";
 import { notification } from "antd";
 
 export default function ContactForm() {
-  //   const toast = useToast();
   type FormValues = {
     name: String;
     email: String;

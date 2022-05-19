@@ -24,30 +24,18 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
   const [visible, setVisible] = useState(false);
   const showDrawer = () => {
     setVisible(true);
-    console.log(props.state, "helooo...", props.fullpage);
     if (width < 968) return;
-    // props.fullpage.destroy();
+
     props.fullpage.setLockAnchors(true);
     props.fullpage.setAllowScrolling(false);
     props.fullpage.setKeyboardScrolling(false);
-
-    // const bodyElement = document.querySelector("body");
-    // if (bodyElement) {
-    //   bodyElement.style.overflow = "scroll";
-    // }
   };
   const onClose = () => {
     setVisible(false);
     if (width < 968) return;
     props.fullpage.setLockAnchors(false);
-    // props.fullpage.reBuild();
     props.fullpage.setAllowScrolling(true);
     props.fullpage.setKeyboardScrolling(true);
-
-    // const bodyElement = document.querySelector("body");
-    // if (bodyElement) {
-    //   bodyElement.style.overflow = "visible";
-    // }
   };
   const contentStyle: any = {
     height: "160px",
@@ -102,7 +90,6 @@ const ProjectCard = (props: { data: Project; state: any; fullpage: any }) => {
               {props.data.images.map((image: string, index: number) => (
                 <div key={index}>
                   <img src={image} alt={image} />
-                  {/* <h3 style={contentStyle}>1</h3> */}
                 </div>
               ))}
             </Carousel>
