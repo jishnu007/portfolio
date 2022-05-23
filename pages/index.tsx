@@ -272,6 +272,7 @@ const Home: NextPage = () => {
       <ReactFullpage
         navigation={false}
         licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
+        scrollingSpeed={1100}
         afterLoad={(origin: any, destination: any, direction: any) => {
           handleAfterLoad;
           const section = destination.item;
