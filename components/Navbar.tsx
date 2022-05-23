@@ -12,7 +12,7 @@ import Resume from "./Resume";
 import useScrollDirection from "../utils/useScrollDirection";
 const Navbar = () => {
   const { height, width }: any = useWindowDimensions();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>();
   const [navMenu, setNavMenu] = useState(false);
   const showDrawer = () => {
     setVisible(true);
@@ -91,9 +91,17 @@ const Navbar = () => {
           <a href="#contact">Contact</a>
         </li>
       </ul>
+
       {width > 769 && (
         <button
-          className={visible ? "resume-btn active" : "resume-btn"}
+          className={[
+            "resume-btn",
+            visible == true
+              ? "active aos-init aos-animate"
+              : visible == false
+              ? "aos-init aos-animate"
+              : "",
+          ].join(" ")}
           onClick={showDrawer}
           data-aos="fade-down"
           data-aos-easing="linear"
@@ -164,7 +172,7 @@ const Navbar = () => {
             </li>
           </ul>
           <button
-            className={visible ? "resume-btn active" : "resume-btn"}
+            className={["resume-btn", visible ? "active" : ""].join(" ")}
             onClick={showDrawer}
           >
             Resume

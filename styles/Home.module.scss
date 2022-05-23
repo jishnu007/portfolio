@@ -141,6 +141,15 @@ $secondary:#2c281d;
       bottom: -35%;
       right: -10%;
       background: #2c281d;
+   
+      @media(max-height:800px){
+        width: 700px;
+        height: 700px;
+      }
+      @media(max-height:710px){
+        width: 640px !important;
+        height: 640px !important;
+      }
       @media(max-width:1500px){
         width: 900px;
         height: 900px;
