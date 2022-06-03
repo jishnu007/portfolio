@@ -152,7 +152,7 @@ const Home: NextPage = () => {
         "Worked as a part of agile team for transforming the legacy code which was written in ROR to the VueJs and make the UI more functional",
         "Have worked on transforming the design which was provided by the designer to life",
         "Have worked on different modules like workorders,invoices,timetracker etc..",
-        "Have integrated chargebee payment gateway",
+        // "Have integrated chargebee payment gateway",
         "Have worked on login/registeration flow pages",
       ],
       tags: ["Vue JS", "Vuetify", "Composition API", "TypeScript", "Sass"],
