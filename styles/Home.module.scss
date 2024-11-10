@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 $montserrat: "Montserrat", sans-serif;
-$primary:#9da284;
-$secondary:#2c281d;
+$primary: #9da284;
+$secondary: #2c281d;
 // .main {
 //   position: relative;
 
@@ -30,23 +30,22 @@ $secondary:#2c281d;
   position: relative;
   scroll-snap-align: start;
   overflow: hidden;
-  &__container{
-    display: flex ;
+  &__container {
+    display: flex;
     width: 100%;
     height: 100%;
     justify-content: space-between;
     padding-left: 3rem;
     padding-right: 3rem;
     position: relative;
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       padding-left: 2rem;
       padding-right: 2rem;
     }
-    @media(max-width:450px){
+    @media (max-width: 450px) {
       padding-left: 1rem;
       padding-right: 1rem;
     }
-    
   }
   &__title {
     font-size: 64px;
@@ -55,22 +54,22 @@ $secondary:#2c281d;
     font-weight: 700;
     color: $secondary;
     z-index: 10;
-    @media(max-width:967px){
+    @media (max-width: 967px) {
       font-size: 58px;
     }
-    @media(max-width:789px){
+    @media (max-width: 789px) {
       font-size: 52px;
     }
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       font-size: 48px;
     }
-    @media(max-width:550px){
+    @media (max-width: 550px) {
       font-size: 42px;
     }
-    @media(max-width:480px){
+    @media (max-width: 480px) {
       font-size: 36px;
     }
-    @media(max-width:400px){
+    @media (max-width: 400px) {
       font-size: 34px;
     }
   }
@@ -80,23 +79,23 @@ $secondary:#2c281d;
     font-family: "Antro_vectra";
     padding-left: 32px;
     z-index: 10;
-    @media(max-width:967px){
+    @media (max-width: 967px) {
       font-size: 59px;
       padding-left: 0;
     }
-    @media(max-width:768px){
+    @media (max-width: 768px) {
       font-size: 48px;
     }
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       font-size: 44px;
     }
-    @media(max-width:550px){
+    @media (max-width: 550px) {
       font-size: 38px;
     }
-    @media(max-width:480px){
+    @media (max-width: 480px) {
       font-size: 32px;
     }
-    @media(max-width:400px){
+    @media (max-width: 400px) {
       font-size: 30px;
     }
   }
@@ -105,22 +104,21 @@ $secondary:#2c281d;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    @media(max-width:1100px){
-      width: 70% !important
+    @media (max-width: 1100px) {
+      width: 70% !important;
     }
-    @media(max-width:967px){
+    @media (max-width: 967px) {
       width: 85% !important;
-      margin-top:-12%;
+      margin-top: -12%;
     }
-    @media(max-width:769px){
+    @media (max-width: 769px) {
       width: 100% !important;
-      margin-top:20%;
+      margin-top: 20%;
       justify-content: flex-start;
     }
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       margin-top: 40%;
     }
-
   }
   &__left p,
   &__left h2 {
@@ -133,7 +131,7 @@ $secondary:#2c281d;
     display: flex;
     flex: 1;
     position: relative;
-    &Circle{
+    &Circle {
       position: absolute;
       border-radius: 50%;
       width: 850px;
@@ -141,65 +139,65 @@ $secondary:#2c281d;
       bottom: -35%;
       right: -10%;
       background: #2c281d;
-   
-      @media(max-height:800px){
+
+      @media (max-height: 800px) {
         width: 700px;
         height: 700px;
       }
-      @media(max-height:710px){
+      @media (max-height: 710px) {
         width: 640px !important;
         height: 640px !important;
       }
-      @media(max-width:1500px){
+      @media (max-width: 1500px) {
         width: 900px;
         height: 900px;
         bottom: -40%;
       }
-      @media(max-width:1400px){
+      @media (max-width: 1400px) {
         width: 850px;
         height: 850px;
       }
-      @media(max-width:1300px){
+      @media (max-width: 1300px) {
         width: 650px;
         height: 650px;
       }
-      @media(max-width:1200px){
+      @media (max-width: 1200px) {
         width: 700px;
         height: 700px;
       }
-      @media(max-width:1100px){
+      @media (max-width: 1100px) {
         width: 650px;
         height: 650px;
       }
-      @media(max-width:1000px){
+      @media (max-width: 1000px) {
         width: 600px;
         height: 600px;
       }
-      @media(max-width:769px){
+      @media (max-width: 769px) {
         bottom: -40%;
         left: 50%;
         transform: translate(-50%, 0);
         width: 95%;
       }
-      @media(max-width:550px){
+      @media (max-width: 550px) {
         width: 120%;
-        div{
+        div {
           margin-top: -50px;
         }
       }
-      @media(max-width:400px){
+      @media (max-width: 400px) {
         width: 135%;
         font-size: 30px;
-          div{
+        div {
           margin-top: -150px;
         }
       }
-      div{
+      div {
         position: relative;
         width: 100%;
         height: 100%;
       }
-      img{
+      img {
         position: absolute;
         bottom: 10%;
         right: 10%;
@@ -209,96 +207,104 @@ $secondary:#2c281d;
   }
 }
 
-.aboutSection{
+.aboutSection {
   background: $secondary;
   -webkit-transition: $secondary 1000ms linear;
   -ms-transition: $secondary 1000ms linear;
   font-weight: 700;
   height: auto;
-  &Content{
+  &Content {
     display: flex;
     padding: 48px;
     padding-right: 0px;
-    &Left{
+    &Left {
       width: 55%;
       display: flex;
       flex-direction: column;
       text-align: justify;
       justify-content: center;
-      @media(max-width:960px){
+      @media (max-width: 960px) {
         width: 100%;
       }
     }
-    &Right{
+    &Right {
+      display: flex;
       padding-left: 2%;
       width: 43%;
-      @media(max-width:960px){
+      > div {
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      @media (max-width: 960px) {
         padding-left: 0;
         width: 100%;
       }
     }
-    @media(max-width:960px){
+    @media (max-width: 960px) {
       flex-direction: column;
       padding-right: 48px;
     }
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       padding-left: 1rem;
       padding-right: 1rem;
     }
   }
-  &LastPara{
+  &LastPara {
     font-size: 28px;
     line-height: 34px;
-    @media(max-width:1500px){
+    @media (max-width: 1500px) {
       font-size: 22px;
       line-height: 32px;
     }
-    @media(max-width:1100px){
+    @media (max-width: 1100px) {
       font-size: 18px;
     }
   }
-  p{
+  p {
     font-size: 28px;
     line-height: 34px;
     margin-bottom: 1em;
-    &:first-child{
+    &:first-child {
       margin-top: 16px;
     }
-   
-    
+
     color: white;
-    @media(max-width:1500px){
+    @media (max-width: 1500px) {
       font-size: 22px;
       line-height: 32px;
       margin-bottom: 0.7em;
     }
-    @media(max-width:1100px){
+    @media (max-width: 1100px) {
       font-size: 18px;
     }
   }
-  span{
+  span {
     color: $primary;
   }
-  &Hoverable{
+  &Hoverable {
     color: white !important;
     cursor: pointer;
   }
-  &Hoverable:hover{
+  &Hoverable:hover {
     transition: all ease-in-out 0.25s;
     color: $primary !important;
   }
 }
-.projectSection{
+.projectSection {
   scroll-snap-align: start;
   background: $primary;
   display: flex;
-  &Content{
+  &Content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     padding: 48px;
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       padding-left: 1rem;
       padding-right: 1rem;
     }
-    &Outer{
+    &Outer {
       display: grid;
       grid-gap: 2rem;
       gap: 2rem;
@@ -311,53 +317,54 @@ $secondary:#2c281d;
       grid-column-start: 1;
       grid-column-end: 3;
       grid-template-columns: auto auto auto;
-   
-      @media(max-width:1279px){
+
+      @media (max-width: 1279px) {
         grid-template-columns: auto auto;
         grid-gap: 1.5rem;
         gap: 1rem;
       }
-      @media(max-width:959px){
+      @media (max-width: 959px) {
         grid-template-columns: auto;
       }
     }
   }
-  h2{
+  h2 {
     font-weight: 600;
     text-align: center;
     color: #fff;
     font-size: 42px;
     margin: 42px 0 26px 0;
     color: #2c281d;
-    @media(max-width:600px){
+    @media (max-width: 600px) {
       font-size: 32px;
       margin: 18px 0 18px 0;
     }
   }
 
-  li{
+  li {
     list-style: none;
-    margin: 24px 24px 0 24px;  
+    margin: 24px 24px 0 24px;
     // flex-basis: 33.333333%;
-    @media(min-width:1500px){
-       width: 450px;
+    @media (min-width: 1500px) {
+      width: 450px;
     }
   }
-  li:nth-child(3n-1){
+  li:nth-child(3n-1) {
     margin-left: 0;
     margin-right: 0;
   }
 }
-// .projectSection 
-// .projectSection 
-.contactSection{
+// .projectSection
+// .projectSection
+.contactSection {
   background: $secondary;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   height: 100vh;
   width: 100vw;
-}.firstSec {
+}
+.firstSec {
   background: red;
 }
 .secondSec {

@@ -1,42 +1,45 @@
-/* eslint-disable @next/next/no-img-element */
+"use client";
 import Image from "next/image";
-
 import Logo from "../assets/images/logo.svg";
-import Hamburger from "../assets/images/hamburger.svg";
-import { Drawer, Button, Carousel } from "antd";
+import { Drawer } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
 import useWindowDimensions from "../utils/useWindowDimensions";
 import { useEffect, useState } from "react";
 import Resume from "./Resume";
 import useScrollDirection from "../utils/useScrollDirection";
+
 const Navbar = () => {
-  const { height, width }: any = useWindowDimensions();
-  const [visible, setVisible] = useState<boolean>();
+  const { width } = useWindowDimensions();
+  const [visible, setVisible] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
-  const showDrawer = () => {
-    setVisible(true);
-  };
-  const onClose = () => {
-    setVisible(false);
-  };
-  const handleMenuOpen = () => {
-    setNavMenu(!navMenu);
-  };
-  const handleCloseMenu = () => {
-    setNavMenu(false);
-  };
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true); // Only true after component mounts
+  }, []);
+
+  const showDrawer = () => setVisible(true);
+  const onClose = () => setVisible(false);
+  const handleMenuOpen = () => setNavMenu(!navMenu);
+  const handleCloseMenu = () => setNavMenu(false);
   const [scrolledToTop, setScrolledToTop] = useState(true);
-  const scrollDirection = useScrollDirection("down" as any);
+  const scrollDirection = useScrollDirection("down");
+
   const handleScroll = () => {
-    setScrolledToTop(window.pageYOffset < 50);
+    setScrolledToTop(window.scrollY < 50);
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Avoid rendering navigation until component has mounted
+  if (!hasMounted) return null;
+
   return (
     <div
       className={[
@@ -52,56 +55,53 @@ const Navbar = () => {
         className="navbar__logo flex"
         data-aos="fade-down"
         data-aos-easing="linear"
-        data-aos-duration="600"
+        data-aos-duration="700"
       >
         <Image src={Logo} alt="logo" width={180} height={90} />
       </div>
 
-      <ul className="navbar__nav flex text-center items-center font-bold text-xl">
-        <li
-          className="px-8"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="600"
-        >
-          <a href="#home">Home</a>{" "}
-        </li>
-        <li
-          className="px-8"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="700"
-        >
-          <a href="#about">About</a>{" "}
-        </li>
-        <li
-          className="px-8"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="800"
-        >
-          <a href="#projects">Projects</a>
-        </li>
-        <li
-          className="px-8"
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="900"
-        >
-          <a href="#contact">Contact</a>
-        </li>
-      </ul>
+      {/* Navigation links */}
+      {
+        <ul className="navbar__nav flex text-center items-center font-bold text-xl">
+          <li
+            className="px-8"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="600"
+          >
+            <a href="#home">Home</a>
+          </li>
+          <li
+            className="px-8"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="700"
+          >
+            <a href="#about">About</a>
+          </li>
+          <li
+            className="px-8"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="800"
+          >
+            <a href="#projects">Projects</a>
+          </li>
+          <li
+            className="px-8"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="900"
+          >
+            <a href="#contact">Contact</a>
+          </li>
+        </ul>
+      }
 
-      {width > 769 && (
+      {/* Resume button and Hamburger for mobile */}
+      {width && width > 769 ? (
         <button
-          className={[
-            "resume-btn",
-            visible == true
-              ? "active aos-init aos-animate"
-              : visible == false
-              ? "aos-init aos-animate"
-              : "",
-          ].join(" ")}
+          className={`resume-btn ${visible ? "active aos-init aos-animate" : "aos-init aos-animate"}`}
           onClick={showDrawer}
           data-aos="fade-down"
           data-aos-easing="linear"
@@ -109,9 +109,7 @@ const Navbar = () => {
         >
           Resume
         </button>
-      )}
-
-      {width <= 769 && (
+      ) : (
         <div className="hamburger">
           <button
             className={navMenu ? "menu opened" : "menu"}
@@ -132,6 +130,7 @@ const Navbar = () => {
           </button>
         </div>
       )}
+
       <Drawer
         title="Resume"
         placement="left"
@@ -146,23 +145,23 @@ const Navbar = () => {
             color="#2c281d"
           />
         }
-        visible={visible}
+        open={visible}
         className="project-drawer"
       >
         <Resume />
       </Drawer>
-      {width <= 769 && (
+
+      {/* Mobile Navigation */}
+      {width && width <= 769 && (
         <div className={navMenu ? "mobile-nav opened" : "mobile-nav"}>
           <ul className="flex text-center items-center font-bold text-xl">
             <li className="px-8">
               <a href="#home" onClick={handleCloseMenu}>
                 Home
-              </a>{" "}
+              </a>
             </li>
             <li className="px-8" onClick={handleCloseMenu}>
-              <a href="#about" onClick={handleCloseMenu}>
-                About
-              </a>{" "}
+              <a href="#about">About</a>
             </li>
             <li className="px-8" onClick={handleCloseMenu}>
               <a href="#projects">Projects</a>
@@ -172,7 +171,7 @@ const Navbar = () => {
             </li>
           </ul>
           <button
-            className={["resume-btn", visible ? "active" : ""].join(" ")}
+            className={`resume-btn ${visible ? "active" : ""}`}
             onClick={showDrawer}
           >
             Resume
@@ -182,4 +181,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;

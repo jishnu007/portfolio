@@ -1,157 +1,162 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 $montserrat: "Montserrat", sans-serif;
-$primary:#9da284;
-$secondary:#2c281d;
-.contactMeInner{
+$primary: #9da284;
+$secondary: #2c281d;
+.contactMeInner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 48px;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 600px) {
+    padding: 0;
+    padding-right: 8px;
+  }
+  h3 {
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    font-size: 42px;
+    margin: 32px 0 32px 0;
+  }
+  input {
+    height: 56px;
+  }
+  &Left {
+    width: 40%;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    padding: 0 48px;
-    @media(max-width:600px){
-        padding: 0;
-        padding-right: 8px;
-    }
-    h3{
-        font-weight: 600;
-        text-align: center;
-        color: #fff;
-        font-size: 42px;
-        margin: 32px 0 32px 0;
-    }
-    input{
-        height: 56px;
-    }
-    &Left{
-        width: 40%;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-    }
-    &Right{
-        width: 80%;
-        margin:  0 auto;
-    }
-    &Address{
-        display: flex;
-        align-items: center;
-        div{
-            display: flex;
-            margin-right: 24px;
-        }
-    }
-    &Phone{
-        display: flex;
-        align-items: center;
-        margin-top: 24px;
-        div{
-            display: flex;
-            margin-right: 24px;
-        }
-    }
-    &Email{
-        display: flex;
-        align-items: center;
-        margin-top: 24px;
-        div{
-            display: flex;
-            margin-right: 24px;
-        }
-    }
-    
-}
-.contactForm{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.ContactFormCard{
-    margin: 0 auto;
-    width: 100%;
-    border-radius: 0.75rem;
-    padding: 32px;
-    box-shadow: none;
-    &Form{
-        display: flex;
-        flex-direction: column;
-    }
-    &Content{
-        display: flex;
-        width: 80%;
-        margin: 0 auto;
-        @media(max-width:969px){
-            width: 100%;
-            flex-direction: column;
-        }
-    }
-    &Left{
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        margin-right: 32px;
-        @media(max-width:969px){
-            margin-right: 0;
-            margin-bottom: 16px;
-        }
-        input{
-            background: rgba(101, 101, 81, 0.3) !important;
-            color: #fff;
-        }
-        input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-            color: rgba(255, 255, 255, 0.6);
-        }
-        // div{
-        //     margin-bottom: 16px;
-        // }
-        div:last-child{
-            margin-bottom: 0px;
-        }
-    }
-    &Right {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        textarea {
-            background: rgba(101, 101, 81, 0.3) !important;
-            color: #fff;
-            height: 100%;
-        }
-        textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .white-border:focus {
-            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) #fff !important;
-        }
-    }
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover, 
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus {
-        border:unset !important;
-        -webkit-text-fill-color: #fff !important;
-        -webkit-box-shadow: none !important ;
-        transition: background-color 5000s ease-in-out 0s;
-    }
-}
-.ContactFormSubmitButton{
+  }
+  &Right {
     width: 80%;
     margin: 0 auto;
-    margin-top: 32px;
+  }
+  &Address {
     display: flex;
-    justify-content: flex-end;
-    button{
-        background: none;
-        border: 1px solid rgba(101, 101, 81, 1);
-        width: max(200px, 25%);
-        color: rgba(255, 255, 255, 1);
-        transition: all ease-out .4s;
+    align-items: center;
+    div {
+      display: flex;
+      margin-right: 24px;
     }
-    button:hover{
-        background: rgba(101, 101, 81, 1) !important;
-        color:#2c281d !important;
-        transition: all ease-in .4s;
+  }
+  &Phone {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    div {
+      display: flex;
+      margin-right: 24px;
     }
+  }
+  &Email {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    div {
+      display: flex;
+      margin-right: 24px;
+    }
+  }
+}
+.contactForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ContactFormCard {
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 0.75rem;
+  padding: 32px;
+  box-shadow: none;
+  &Form {
+    display: flex;
+    flex-direction: column;
+  }
+  &Content {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    @media (max-width: 969px) {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+  &Left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 32px;
+    @media (max-width: 969px) {
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+    input {
+      background: rgba(101, 101, 81, 0.3) !important;
+      color: #fff;
+    }
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: rgba(255, 255, 255, 0.6);
+    }
+    // div{
+    //     margin-bottom: 16px;
+    // }
+    div:last-child {
+      margin-bottom: 0px;
+    }
+  }
+  &Right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    textarea {
+      background: rgba(101, 101, 81, 0.3) !important;
+      color: #fff;
+      height: 100%;
+    }
+    textarea::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .white-border:focus {
+      --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+        calc(1px + var(--tw-ring-offset-width)) #fff !important;
+    }
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: unset !important;
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: none !important ;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+.ContactFormSubmitButton {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    background: none;
+    border: 1px solid rgba(101, 101, 81, 1);
+    width: max(200px, 25%);
+    color: rgba(255, 255, 255, 1);
+    transition: all ease-out 0.4s;
+  }
+  button:hover {
+    background: rgba(101, 101, 81, 1) !important;
+    color: #2c281d !important;
+    transition: all ease-in 0.4s;
+  }
 }

@@ -1,10 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/no-unescaped-entities */
+// /* eslint-disable @next/next/no-img-element */
+// /* eslint-disable react/no-unescaped-entities */
+"use client";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.scss";
-import TextLoop from "react-text-loop";
+import { TextLoop } from "@pr0gramm/react-text-loop";
 import weekday from "../utils/weekday";
 import shuffle from "../utils/shuffle";
 import { gsap } from "gsap";
@@ -267,12 +268,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:image" content="/linked-pic.png" />
       </Head>
-
-      {/* <main className={styles.main}> */}
       <ReactFullpage
         navigation={false}
         licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
         scrollingSpeed={1100}
+        credits={{
+          enabled: false,
+        }}
         afterLoad={(origin: any, destination: any, direction: any) => {
           handleAfterLoad;
           const section = destination.item;
@@ -449,22 +451,30 @@ const Home: NextPage = () => {
                     👋 Hi, I'm <span>Jishnu</span>
                   </p>
                   <p id="aboutpara">
-                    I'm a{" "}
-                    <span>Full Stack Web Developer / Software Engineer</span>. I
-                    Love creating
-                    <span> interactive digital experiences</span> on the web as
-                    well as making it dynamic by{" "}
-                    <span>robust web architecture</span>.I enjoy solving
-                    problems and working with <span>JavaScript</span> and its
-                    hip frameworks like React ,Vue
-                  </p>{" "}
+                    I'm a <span>Frontend Software Engineer</span> with a passion
+                    for crafting engaging, <span>user-centered</span> digital
+                    experiences. With a focus on building <span>scalable</span>,{" "}
+                    <span>maintainable</span>, and
+                    <span> interactive</span> web applications, I enjoy solving
+                    problems and bringing ideas to life. With a strong
+                    foundation in <span>JavaScript</span> and frameworks like{" "}
+                    <span>React</span> and <span>Vue</span>, I work to bridge
+                    the gap between <span>design</span> and{" "}
+                    <span>technology</span>.
+                  </p>
                   <p id="aboutpara">
-                    {" "}
-                    I've worked with and for <span>startups</span> like
-                    Rayabhari and Sweans,helped companies like{" "}
-                    <span>Experience, UtilizeCore</span> and{" "}
-                    <span>SecurityCentric</span> by providing{" "}
-                    <span>cutting edge</span> web experiences and technology
+                    I have over <span>4 years of experience</span> in the
+                    industry. Currently, I'm part of a talented team at{" "}
+                    <span>ThoughtSpot</span>, where we develop{" "}
+                    <span>innovative products</span> and <span>features</span>{" "}
+                    around
+                    <span> search-driven analytics</span>. Previously, I've
+                    worked with and for <span>startups</span> like Rayabhari and
+                    Sweans, and have contributed to projects for companies such
+                    as <span>Experience.com</span>, <span>UtilizeCore</span>,
+                    and <span>SecurityCentric</span> by delivering{" "}
+                    <span>cutting-edge</span> web experiences and{" "}
+                    <span>technology solutions</span>.
                   </p>
                   {/* <p>Learning Web3</p> */}
                   <p id="aboutpara">
@@ -533,3 +543,134 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/no-unescaped-entities */
+// import type { NextPage } from "next";
+// import Head from "next/head";
+// import { useState } from "react";
+// import styles from "../styles/Home.module.scss";
+// import TextLoop from "react-text-loop";
+// import weekday from "../utils/weekday";
+// import shuffle from "../utils/shuffle";
+// import { gsap } from "gsap";
+// import ProjectCard from "../components/ProjectCard";
+// import ContactMe from "../components/ContactMe";
+// import ReactFullpage from "@fullpage/react-fullpage";
+// import useWindowDimensions from "../utils/useWindowDimensions";
+
+// const Home: NextPage = () => {
+//   const synonyms = ["ace", "amazing", "astonishing", "awesome", "beautiful", ...];
+//   const { height, width } = useWindowDimensions();
+//   const shuffledSynonyms = shuffle(synonyms);
+
+//   const [aboutAnimationCounter, setAboutAnimationCounter] = useState(0);
+//   const [projectAnimationCounter, setProjectAnimationCounter] = useState(0);
+//   const [contactAnimationCounter, setContactAnimationCounter] = useState(0);
+
+//   const prependArticle = (word: string) => {
+//     const vowels = "aeiou";
+//     return vowels.includes(word[0].toLowerCase()) ? `an ${word}` : `a ${word}`;
+//   };
+
+//   const projects = [
+//     {
+//       id: 0,
+//       title: "Utilizecore",
+//       images: ["/UtilizeCore-1.webp", "/UtilizeCore-2.webp"],
+//       smalldesc: "A game-changing platform for service management.",
+//       desc: "A platform for managing subcontractor networks, clients, and locations.",
+//       responsibilities: [
+//         "Transformed legacy code from ROR to Vue.js",
+//         "Developed UI components based on design",
+//         "Worked on modules like work orders, invoices, etc.",
+//       ],
+//       tags: ["Vue JS", "Vuetify", "TypeScript"],
+//       link: "https://utilizecore.com/",
+//     },
+//     // Other projects...
+//   ];
+
+//   const handleAfterLoad = () => {
+//     const element = document.querySelector(".fp-section.active .aos-init");
+//     if (element) {
+//       element.classList.add("aos-animate");
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Head>
+//         <title>Jishnu Pavithran</title>
+//         <meta name="description" content="Generated by create next app" />
+//         <link rel="icon" href="/favicon.ico" />
+//         <meta property="og:image" content="/linked-pic.png" />
+//       </Head>
+
+//       <ReactFullpage
+//         navigation={false}
+//         licenseKey={"FSq:Ya'$hK3%S.BsJ('sa"}
+//         scrollingSpeed={1100}
+//         afterLoad={handleAfterLoad}
+//         fitToSection={false}
+//         anchors={["home", "about", "projects", "contact"]}
+//         render={({ state, fullpageApi }) => (
+//           <ReactFullpage.Wrapper>
+//             <section className={`${styles.mainSection} section`}>
+//               <div className={styles.mainSection__container}>
+//                 <h2>Jishnu Pavithran</h2>
+//                 <p>A Full Stack Developer</p>
+//                 {width > 967 && (
+//                   <a href="#about" className="scroll-down" id="mouse">
+//                     <span></span>
+//                   </a>
+//                 )}
+//               </div>
+//             </section>
+
+//             <section className={`${styles.aboutSection} section`} data-anchor="about">
+//               <div className={styles.aboutSectionContent}>
+//                 <div className={styles.aboutSectionContentLeft}>
+//                   <p>
+//                     👋 Hi, I'm <span>Jishnu</span>. I'm a <span>Full Stack Developer</span>.
+//                   </p>
+//                   <p>
+//                     I enjoy building <span>interactive digital experiences</span> using{" "}
+//                     <span>JavaScript</span> and frameworks like <span>React</span> and <span>Vue</span>.
+//                   </p>
+//                   <p>
+//                     Worked with companies like <span>Experience</span>, <span>UtilizeCore</span>, and <span>SecurityCentric</span>.
+//                   </p>
+//                   <p>
+//                     <TextLoop>
+//                       {shuffledSynonyms.map((synonym, index) => (
+//                         <span key={index}>{prependArticle(synonym)}</span>
+//                       ))}
+//                     </TextLoop>{" "}
+//                     <span>{weekday()}</span>
+//                   </p>
+//                 </div>
+//                 {/* Right Section */}
+//               </div>
+//             </section>
+
+//             <section className={`${styles.projectSection} section`} data-anchor="projects">
+//               <h2>Some Things I’ve Worked On</h2>
+//               <div className={styles.projectSectionContentOuter}>
+//                 {projects.map((project, index) => (
+//                   <ProjectCard key={index} data={project} />
+//                 ))}
+//               </div>
+//             </section>
+
+//             <section className={`${styles.contactSection} section`} data-anchor="contact">
+//               <ContactMe />
+//             </section>
+//           </ReactFullpage.Wrapper>
+//         )}
+//       />
+//     </>
+//   );
+// };
+
+// export default Home;

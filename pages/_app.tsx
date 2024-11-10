@@ -1,8 +1,9 @@
+"use client";
 import "../styles/globals.scss";
-import "antd/dist/antd.css";
+import "antd/dist/reset.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 
 import "aos/dist/aos.css";
@@ -10,15 +11,17 @@ import "aos/dist/aos.css";
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     AOS.init({
-      startEvent: "load",
-      once: false,
+      // startEvent: "",
+      // once: false,
     });
   }, []);
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  return <Layout>{isClient ? <Component {...pageProps} /> : ""}</Layout>;
 }
 
 export default MyApp;
