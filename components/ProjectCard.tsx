@@ -5,6 +5,7 @@ import { Drawer, Carousel } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
 import useWindowDimensions from "../utils/useWindowDimensions";
+import Image from "next/image";
 
 type Project = {
   id: number;
@@ -52,7 +53,7 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
         onClick={showDrawer}
         id="project-card"
       >
-        <img src={data.images[0]} alt={data.title} />
+        <Image src={data.images[0]} alt={data.title} layout="fill" />
         <div className={Styles.cardOverlay}>
           <h3>{data.title}</h3>
           <div className={Styles.tags}>
