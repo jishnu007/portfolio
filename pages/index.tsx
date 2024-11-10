@@ -448,13 +448,13 @@ const Home: NextPage = () => {
               <div className={styles.aboutSectionContent}>
                 <div className={styles.aboutSectionContentLeft}>
                   <p id="aboutpara">
-                    👋 Hi, I'm <span>Jishnu</span>
+                    👋 Hi, I&apos;m <span>Jishnu</span>
                   </p>
                   <p id="aboutpara">
-                    I'm a <span>Frontend Software Engineer</span> with a passion
-                    for crafting engaging, <span>user-centered</span> digital
-                    experiences. With a focus on building <span>scalable</span>,{" "}
-                    <span>maintainable</span>, and
+                    I&apos;m a <span>Frontend Software Engineer</span> with a
+                    passion for crafting engaging, <span>user-centered</span>{" "}
+                    digital experiences. With a focus on building{" "}
+                    <span>scalable</span>, <span>maintainable</span>, and
                     <span> interactive</span> web applications, I enjoy solving
                     problems and bringing ideas to life. With a strong
                     foundation in <span>JavaScript</span> and frameworks like{" "}
@@ -464,11 +464,11 @@ const Home: NextPage = () => {
                   </p>
                   <p id="aboutpara">
                     I have over <span>4 years of experience</span> in the
-                    industry. Currently, I'm part of a talented team at{" "}
+                    industry. Currently, I&apos;m part of a talented team at{" "}
                     <span>ThoughtSpot</span>, where we develop{" "}
                     <span>innovative products</span> and <span>features</span>{" "}
                     around
-                    <span> search-driven analytics</span>. Previously, I've
+                    <span> search-driven analytics</span>. Previously, I&apos;ve
                     worked with and for <span>startups</span> like Rayabhari and
                     Sweans, and have contributed to projects for companies such
                     as <span>Experience.com</span>, <span>UtilizeCore</span>,

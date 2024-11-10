@@ -1,6 +1,4 @@
 "use client";
-/* eslint-disable @next/next/link-passhref */
-/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import Styles from "../styles/Projectcard.module.scss";
 import { Drawer, Carousel } from "antd";
