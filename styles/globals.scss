@@ -31,6 +31,9 @@ body {
 body {
   height: 100vh !important;
   width: 100vw !important;
+  @media (max-width: 800px) {
+    height: 100% !important;
+  }
   margin: 0;
 }
 div#__next {
@@ -404,4 +407,7 @@ iframe {
   display: flex;
   height: 100vh;
   width: 100vw;
+  @media (max-width: 800px) {
+    height: 100%;
+  }
 }

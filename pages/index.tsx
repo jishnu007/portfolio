@@ -138,6 +138,23 @@ const Home: NextPage = () => {
   const projects = [
     {
       id: 0,
+      title: "Thoughtspot",
+      images: ["/ts1.webp", "/ts2.webp", "/ts3.webp", "/ts4.webp", "/ts5.webp"],
+      smalldesc: "AI-Powered Analytics for your modern data stack.",
+      desc: "ThoughtSpot is an AI-powered business intelligence and data analytics platform that enables users to analyze and visualize data through simple, search-driven interactions.",
+      responsibilities: [
+        "Implemented Version control for dashboards, analyzed answers and worksheets by leveraging functionalities of git, which helped users to collaborate and keeping track of their changes",
+        "Led a frontend team of four in revamping the data connection flow to improve UI/UX and transitioning the module to a Micro-Frontend (MFE) Architecture.",
+        "Contributed to the development of Spotapps feature, enabling customers to analyze data without complex modeling, reducing onboarding time by 70%.",
+        "Collaborated in developing the Thoughtspot component library, improving design consistency and significantly increased code reusability.",
+        "Wrote high quality unit tests using Jest and end-to-end automation tests using playwright",
+        "Working in the Agile programming environment to define stories, do estimates and plan sprints.",
+      ],
+      tags: ["React", "TypeScript", "Sass", "GraphQL", "Jest", "Playwright"],
+      link: "https://www.thoughtspot.com/",
+    },
+    {
+      id: 1,
       title: "Utilizecore",
       images: [
         "/UtilizeCore-1.webp",
@@ -160,7 +177,7 @@ const Home: NextPage = () => {
       link: "https://utilizecore.com/",
     },
     {
-      id: 1,
+      id: 2,
       title: "Experience",
       images: ["/experianceHome.webp", "/experianceInner.webp"],
       smalldesc: "Experience Management Platform",
@@ -174,7 +191,7 @@ const Home: NextPage = () => {
       link: "https://pro.experience.com/",
     },
     {
-      id: 2,
+      id: 3,
       title: "Security Centric Website",
       smalldesc: "Anytime, Anywhere access to hands-on security trainings.",
       desc: "Security Centric is a CyberSecurity Enablement company specializing  in Virtualization Education",
@@ -192,7 +209,7 @@ const Home: NextPage = () => {
       link: "http://www-dev.securitycentric.net/",
     },
     {
-      id: 3,
+      id: 4,
       title: "BlueOcean",
       images: [
         "/blue-ocean-2.webp",
@@ -213,7 +230,7 @@ const Home: NextPage = () => {
       link: "http://www.makethisblue.com",
     },
     {
-      id: 4,
+      id: 5,
       title: "Security Centric CRM",
       images: ["/CRM-3.webp", "/CRM-2.webp", "/CRM-1.webp"],
       smalldesc: "Anytime, Anywhere access to hands-on security trainings.",

@@ -4,7 +4,7 @@ import React from "react";
 function Resume() {
   return (
     <iframe
-      src="https://www.canva.com/design/DAFAqGaMF3w/view?embed"
+      src="https://www.canva.com/design/DAGWRM2CTfM/QyyGQHSvbVW9HD9uGkmnbA/view"
       allowFullScreen
       width="740"
       height="780"
