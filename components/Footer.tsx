@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { FaFacebookF, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import Styles from "../styles/Footer.module.scss";

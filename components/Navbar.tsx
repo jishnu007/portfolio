@@ -1,6 +1,3 @@
-"use client";
-import Image from "next/image";
-import Logo from "../assets/images/logo.svg";
 import { Drawer } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
@@ -24,7 +21,7 @@ const Navbar = () => {
   const handleMenuOpen = () => setNavMenu(!navMenu);
   const handleCloseMenu = () => setNavMenu(false);
   const [scrolledToTop, setScrolledToTop] = useState(true);
-  const scrollDirection = useScrollDirection("down");
+  const scrollDirection = useScrollDirection({ initialDirection: "down", thresholdPixels: 10 });
 
   const handleScroll = () => {
     setScrolledToTop(window.scrollY < 50);
@@ -43,7 +40,7 @@ const Navbar = () => {
   return (
     <div
       className={[
-        "absolute z-10 px-16 navbar justify-between items-center flex w-full",
+        "fixed z-10 px-16 navbar justify-between items-center flex w-full",
         scrollDirection === "up" && !scrolledToTop ? "navbar-droped-up" : "",
         scrollDirection === "down" && !scrolledToTop
           ? "navbar-droped-down"
@@ -57,7 +54,12 @@ const Navbar = () => {
         data-aos-easing="linear"
         data-aos-duration="700"
       >
-        <Image src={Logo} alt="logo" width={180} height={90} />
+        <img 
+          src="/logo.svg" 
+          alt="logo" 
+          width={180} 
+          height={60}
+        />
       </div>
 
       {/* Navigation links */}

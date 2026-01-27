@@ -1,11 +1,10 @@
-// /* eslint-disable @next/next/no-img-element */
-// /* eslint-disable react/no-unescaped-entities */
-"use client";
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.scss";
-import { TextLoop } from "@pr0gramm/react-text-loop";
+import { TextLoop } from "../components/TextLoop";
 import weekday from "../utils/weekday";
 import shuffle from "../utils/shuffle";
 import { gsap } from "gsap";

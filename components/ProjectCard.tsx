@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import Styles from "../styles/Projectcard.module.scss";
 import { Drawer, Carousel } from "antd";
