@@ -20,7 +20,7 @@ type Project = {
 type ProjectCardProps = {
   data: Project;
   state: any;
-  fullpage: any;
+  fullpage: any | null;
 };
 
 const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
@@ -29,7 +29,7 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
 
   const showDrawer = () => {
     setVisible(true);
-    if (width >= 968) {
+    if (width >= 968 && fullpage) {
       fullpage.setLockAnchors(true);
       fullpage.setAllowScrolling(false);
       fullpage.setKeyboardScrolling(false);
@@ -38,7 +38,7 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
 
   const onClose = () => {
     setVisible(false);
-    if (width >= 968) {
+    if (width >= 968 && fullpage) {
       fullpage.setLockAnchors(false);
       fullpage.setAllowScrolling(true);
       fullpage.setKeyboardScrolling(true);

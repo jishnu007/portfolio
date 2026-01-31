@@ -59,63 +59,54 @@ export default function ContactForm() {
         >
           <div className={Styles.ContactFormCardContent}>
             <div className={Styles.ContactFormCardLeft}>
-              <div className={errors.name ? "mb-0" : "mb-4"}>
+              <div>
                 <label htmlFor="name" className="sr-only">
                   Full name
                 </label>
                 <input
                   type="text"
                   {...register("name", {
-                    required: "This is required",
+                    required: "Please enter your name",
                   })}
-                  className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${
-                    errors.name ? "ring-2 ring-red-500" : null
-                  }`}
+                  className={errors.name ? "ring-2" : ""}
                   placeholder="Full name"
                 />
 
                 <ErrorMessage
                   errors={errors}
                   name="name"
-                  render={({ message }) => (
-                    <span className="text-red-400 text-sm py-2">{message}</span>
-                  )}
+                  render={({ message }) => <span>{message}</span>}
                 />
               </div>
-              <div className={errors.email ? "mb-0" : "mb-4"}>
+              <div>
                 <label htmlFor="email" className="sr-only">
                   Email
                 </label>
                 <input
                   {...register("email", {
-                    required: "This is required",
+                    required: "Please enter your email",
                     pattern: {
                       value: /\S+@\S+\.\S+/,
                       message: "Please enter a valid email",
                     },
                   })}
                   type="text"
-                  className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${
-                    errors.email ? "ring-2 ring-red-500" : null
-                  }`}
+                  className={errors.email ? "ring-2" : ""}
                   placeholder="Email"
                 />
                 <ErrorMessage
                   errors={errors}
                   name="email"
-                  render={({ message }) => (
-                    <span className="text-red-400 text-sm py-2">{message}</span>
-                  )}
+                  render={({ message }) => <span>{message}</span>}
                 />
               </div>
-              <div className="mb-4">
+              <div>
                 <label htmlFor="phone" className="sr-only">
                   Phone
                 </label>
                 <input
                   type="text"
                   {...register("phone")}
-                  className="block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"
                   placeholder="Phone"
                 />
               </div>
@@ -125,19 +116,14 @@ export default function ContactForm() {
                 Message
               </label>
               <textarea
-                rows={4}
-                {...register("message", { required: "This is required" })}
-                className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${
-                  errors.message ? "ring-2 ring-red-500" : null
-                }`}
+                {...register("message", { required: "Please enter a message" })}
+                className={errors.message ? "ring-2" : ""}
                 placeholder="Message"
               ></textarea>
               <ErrorMessage
                 errors={errors}
                 name="message"
-                render={({ message }) => (
-                  <span className="text-red-400 text-sm py-2">{message}</span>
-                )}
+                render={({ message }) => <span>{message}</span>}
               />
             </div>
           </div>

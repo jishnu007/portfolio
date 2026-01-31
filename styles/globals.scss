@@ -12,7 +12,6 @@ $secondary: #2c281d;
 
 html,
 body {
-  scroll-behavior: smooth !important;
   padding: 0;
   margin: 0;
   font-family:
@@ -27,19 +26,26 @@ body {
     Droid Sans,
     Helvetica Neue,
     sans-serif;
+  // Prevent body scroll, only container scrolls
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background: #9da284;
 }
+
 body {
-  height: 100vh !important;
   width: 100vw !important;
-  @media (max-width: 800px) {
-    height: 100% !important;
-  }
+  overflow: hidden;
   margin: 0;
+  background: #9da284;
 }
+
 div#__next {
-  height: 100vh !important;
   width: 100vw !important;
   margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #9da284;
 }
 
 a {
