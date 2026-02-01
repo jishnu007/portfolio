@@ -706,7 +706,8 @@ iframe {
     width: 100%;
     justify-content: center;
     margin: 0;
-    padding: 1.2rem 1.5rem !important;
+    margin-top: auto;
+    padding: 1rem 1.5rem !important;
     background: rgba(157, 162, 132, 0.25) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -716,6 +717,7 @@ iframe {
     box-shadow: 
       0 -4px 16px rgba(0, 0, 0, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
     
     &::before {
       display: none;
@@ -798,7 +800,7 @@ iframe {
   
   @media (max-width: 900px) {
     gap: 0.6rem;
-    padding: 0.55rem 1.2rem !important;
+    padding: 1rem !important;
     
     &::after {
       left: 1.2rem;
