@@ -1,35 +1,29 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import Styles from "../styles/Projectcard.module.scss";
 import { Drawer, Carousel } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
 import useWindowDimensions from "../utils/useWindowDimensions";
 import Image from "next/image";
+import type { Project } from "../types";
 
-type Project = {
-  id: number;
-  title: string;
-  images: string[];
-  smalldesc: string;
-  desc: string;
-  responsibilities: string[];
-  tags: string[];
-  link: string;
-};
-
-type ProjectCardProps = {
+interface ProjectCardProps {
   data: Project;
-  state: any;
-  fullpage: any | null;
-};
+  state: unknown;
+  fullpage: {
+    setLockAnchors: (lock: boolean) => void;
+    setAllowScrolling: (allow: boolean) => void;
+    setKeyboardScrolling: (allow: boolean) => void;
+  } | null;
+}
 
 const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
-  const { width } = useWindowDimensions() as { width: number };
+  const { width } = useWindowDimensions();
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
     setVisible(true);
-    if (width >= 968 && fullpage) {
+    if (width && width >= 968 && fullpage) {
       fullpage.setLockAnchors(true);
       fullpage.setAllowScrolling(false);
       fullpage.setKeyboardScrolling(false);
@@ -38,7 +32,7 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
 
   const onClose = () => {
     setVisible(false);
-    if (width >= 968 && fullpage) {
+    if (width && width >= 968 && fullpage) {
       fullpage.setLockAnchors(false);
       fullpage.setAllowScrolling(true);
       fullpage.setKeyboardScrolling(true);
@@ -51,13 +45,28 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
         className={Styles.projectCard}
         onClick={showDrawer}
         id="project-card"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            showDrawer();
+          }
+        }}
+        aria-label={`View ${data.title} project details`}
       >
-        <Image src={data.images[0]} alt={data.title} layout="fill" />
+        <Image
+          src={data.images[0]}
+          alt={data.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={data.id <= 2}
+        />
         <div className={Styles.cardOverlay}>
           <h3>{data.title}</h3>
           <div className={Styles.tags}>
             {data.tags.map((tag, index) => (
-              <div className={Styles.tag} key={index}>
+              <div className={Styles.tag} key={`${data.id}-tag-${index}`}>
                 {tag}
               </div>
             ))}
@@ -87,8 +96,10 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
             <p>{data.smalldesc}</p>
             <Carousel autoplay>
               {data.images.map((image, index) => (
-                <div key={index}>
-                  <img src={image} alt={data.title} />
+                <div key={`${data.id}-carousel-${index}`}>
+                  {/* Using standard img tag as Ant Design Carousel requires it */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={image} alt={`${data.title} screenshot ${index + 1}`} />
                 </div>
               ))}
             </Carousel>
@@ -97,13 +108,13 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
             <h4>What I Have Done</h4>
             <ul className="resps">
               {data.responsibilities?.map((responsibility, index) => (
-                <li key={index}>{responsibility}</li>
+                <li key={`${data.id}-resp-${index}`}>{responsibility}</li>
               ))}
             </ul>
             <h4>Technologies</h4>
             <div className={Styles.tags}>
               {data.tags.map((tag, index) => (
-                <div className={Styles.tag} key={index}>
+                <div className={Styles.tag} key={`${data.id}-drawer-tag-${index}`}>
                   {tag}
                 </div>
               ))}
@@ -123,4 +134,5 @@ const ProjectCard = ({ data, state, fullpage }: ProjectCardProps) => {
   );
 };
 
-export default ProjectCard;
+// Memoize to prevent unnecessary re-renders
+export default memo(ProjectCard);

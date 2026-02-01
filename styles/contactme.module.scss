@@ -11,8 +11,18 @@ $secondary: #2c281d;
   align-items: center;
   justify-content: center;
   
+  @media (max-width: 967px) {
+    padding: 120px 48px 60px;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
   @media (max-width: 600px) {
-    padding: 40px 24px;
+    padding: 110px 24px 50px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 100px 20px 40px;
   }
   
   h3 {
@@ -22,6 +32,11 @@ $secondary: #2c281d;
     font-size: clamp(36px, 5vw, 52px);
     margin: 0 0 24px 0;
     letter-spacing: -0.02em;
+    
+    @media (max-width: 600px) {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
   }
   
   input {
@@ -44,7 +59,7 @@ $secondary: #2c281d;
     }
     
     @media (max-width: 600px) {
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     
     &Main {
@@ -86,12 +101,12 @@ $secondary: #2c281d;
       }
       
       @media (max-width: 768px) {
-        font-size: 26px;
+        font-size: 24px;
         gap: 8px;
       }
       
       @media (max-width: 600px) {
-        font-size: 22px;
+        font-size: 20px;
         gap: 6px;
       }
     }
@@ -105,7 +120,7 @@ $secondary: #2c281d;
       font-style: italic;
       
       @media (max-width: 600px) {
-        font-size: 13px;
+        font-size: 12px;
       }
     }
   }
@@ -180,7 +195,8 @@ $secondary: #2c281d;
     
     @media (max-width: 969px) {
       flex-direction: column;
-      gap: 0;
+      gap: 18px;
+      padding-bottom: 20px;
     }
   }
   
@@ -191,7 +207,8 @@ $secondary: #2c281d;
     gap: 20px;
     
     @media (max-width: 969px) {
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 0;
     }
     
     > div {
@@ -231,6 +248,11 @@ $secondary: #2c281d;
       transition: all 0.3s ease;
       font-family: $montserrat;
       width: 100%;
+      
+      @media (max-width: 600px) {
+        padding: 14px 18px;
+        font-size: 14px;
+      }
       
       &:focus {
         background: rgba(157, 162, 132, 0.2) !important;
@@ -279,12 +301,23 @@ $secondary: #2c281d;
       border: 1px solid rgba(157, 162, 132, 0.3);
       color: #fff;
       height: 100%;
+      min-height: 180px;
       border-radius: 4px;
       padding: 16px 20px;
       font-size: 15px;
       transition: all 0.3s ease;
       font-family: $montserrat;
       resize: none;
+      
+      @media (max-width: 969px) {
+        min-height: 140px;
+      }
+      
+      @media (max-width: 600px) {
+        padding: 14px 18px;
+        font-size: 14px;
+        min-height: 120px;
+      }
       
       &:focus {
         background: rgba(157, 162, 132, 0.2) !important;
@@ -324,9 +357,13 @@ $secondary: #2c281d;
 .ContactFormSubmitButton {
   width: 100%;
   max-width: 900px;
-  margin: 32px auto 0;
+  margin: 24px auto 0;
   display: flex;
   justify-content: flex-end;
+  
+  @media (max-width: 600px) {
+    margin-top: 20px;
+  }
   
   button {
     background: none;
@@ -341,6 +378,12 @@ $secondary: #2c281d;
     cursor: pointer;
     font-family: $montserrat;
     text-transform: uppercase;
+    
+    @media (max-width: 600px) {
+      padding: 12px 40px;
+      font-size: 14px;
+      width: 100%;
+    }
     
     &:hover {
       background: $primary !important;

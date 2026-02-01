@@ -33,7 +33,7 @@ $secondary: #2c281d;
   }
   
   @media (max-width: 967px) {
-    scroll-snap-type: y proximity;
+    scroll-snap-type: none;
   }
 }
 
@@ -50,6 +50,15 @@ $secondary: #2c281d;
   
   // Parallax effect - hero will scale and fade slightly on scroll
   will-change: transform, opacity;
+  
+  @media (max-width: 967px) {
+    scroll-snap-align: none;
+  }
+  
+  @media (max-width: 600px) {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
 }
 
 // Stacked Sections Container
@@ -69,6 +78,13 @@ $secondary: #2c281d;
   
   // Initial state for parallax effect (controlled by JS)
   will-change: transform, opacity;
+  
+  @media (max-width: 967px) {
+    height: auto;
+    min-height: 100vh;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
 }
 
 .mainSection {
@@ -272,6 +288,12 @@ $secondary: #2c281d;
   display: flex;
   flex-direction: column;
   
+  @media (max-width: 967px) {
+    height: auto;
+    min-height: 100vh;
+    padding: 6rem 0 4rem;
+  }
+  
   &::before {
     content: "";
     position: absolute;
@@ -300,6 +322,11 @@ $secondary: #2c281d;
     z-index: 1;
     height: 100%;
     align-items: center;
+
+    @media (max-width: 967px) {
+      height: auto;
+      padding: 0 48px;
+    }
 
     &Left {
       width: 55%;
@@ -335,6 +362,7 @@ $secondary: #2c281d;
       @media (max-width: 960px) {
         padding-left: 0;
         width: 100%;
+        margin-top: 3rem;
       }
     }
 
@@ -711,6 +739,12 @@ $secondary: #2c281d;
   position: relative;
   flex-direction: column;
 
+  @media (max-width: 967px) {
+    height: auto;
+    min-height: auto;
+    padding: 6rem 0 4rem;
+  }
+
   &Content {
     display: flex;
     flex-direction: column;
@@ -718,17 +752,24 @@ $secondary: #2c281d;
     height: 100%;
     padding: 48px;
     justify-content: center;
+    
+    @media (max-width: 967px) {
+      height: auto;
+      padding: 0 48px;
+      justify-content: flex-start;
+    }
+    
     @media (max-width: 600px) {
       padding-left: 1rem;
       padding-right: 1rem;
     }
+    
     &Outer {
       display: grid;
       grid-gap: 2rem;
       gap: 2rem;
       grid-row-start: 1;
       grid-row-end: 3;
-      // grid-template-columns: repeat(3,minmax(1,2fr));
       justify-content: space-between;
       align-items: center;
       justify-content: center;
@@ -743,6 +784,7 @@ $secondary: #2c281d;
       }
       @media (max-width: 959px) {
         grid-template-columns: auto;
+        gap: 1.5rem;
       }
     }
   }
@@ -763,7 +805,6 @@ $secondary: #2c281d;
   li {
     list-style: none;
     margin: 24px 24px 0 24px;
-    // flex-basis: 33.333333%;
     @media (min-width: 1500px) {
       width: 450px;
     }
@@ -782,6 +823,11 @@ $secondary: #2c281d;
   min-height: 100vh;
   width: 100%;
   position: relative;
+  
+  @media (max-width: 967px) {
+    height: auto;
+    min-height: 100vh;
+  }
 }
 .firstSec {
   background: red;
