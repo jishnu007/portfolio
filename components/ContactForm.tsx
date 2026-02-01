@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { ErrorMessage } from "@hookform/error-message";
 import Styles from "../styles/contactme.module.scss";
 import { notification } from "antd";
@@ -19,11 +20,14 @@ export default function ContactForm() {
     formState: { errors },
   } = useForm<FormValues>();
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function onSubmitForm(values: any) {
+    setIsSubmitting(true);
+    
     let config = {
       method: "post",
-      url: "/api/contact",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -57,6 +61,8 @@ export default function ContactForm() {
         message: "Can't send the message, something went wrong",
         description: errorMessage,
       });
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -140,9 +146,40 @@ export default function ContactForm() {
           <div className={Styles.ContactFormSubmitButton}>
             <button
               type="submit"
+              disabled={isSubmitting}
               className="inline-flex justify-center py-3 px-6 border border-transparent shadow text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none "
+              style={{
+                opacity: isSubmitting ? 0.7 : 1,
+                cursor: isSubmitting ? "not-allowed" : "pointer",
+              }}
             >
-              Submit
+              {isSubmitting ? (
+                <>
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Sending...
+                </>
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
