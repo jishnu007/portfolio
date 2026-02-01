@@ -117,10 +117,6 @@ h3 {
   ul {
     margin-bottom: unset !important;
   }
-  a {
-    color: unset !important;
-    transition: unset !important;
-  }
   &__logo {
     border-radius: 0 0 4px 4px;
     background: #2c281d;
@@ -135,8 +131,300 @@ h3 {
       width: 180px !important;
       height: 60px !important;
       object-fit: contain;
-      transition: ease-in-out 1s;
+      transition: ease-in-out 0.75s;
     }
+  }
+}
+
+// Frosted Glass Nano Pill Navigation - Clean & Professional
+.nano-pill-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
+}
+
+.nano-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.4rem;
+  border-radius: 100px;
+  
+  // Protect from scroll-triggered animations
+  opacity: 1 !important;
+  transform: none !important;
+  
+  // Instant color changes for chameleon effect - no transition needed
+  transition: none;
+  
+  // Clean frosted glass effect
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 4px 16px rgba(44, 40, 29, 0.08),
+    0 1px 3px rgba(44, 40, 29, 0.04),
+    inset 0 0.5px 1px rgba(255, 255, 255, 0.25);
+  
+  // Subtle border highlight
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.1)
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  &__slider {
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    border-radius: 100px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.4s ease,
+                box-shadow 0.4s ease;
+    box-shadow: 
+      0 2px 12px rgba(157, 162, 132, 0.3),
+      0 1px 4px rgba(157, 162, 132, 0.2),
+      inset 0 0.5px 1px rgba(255, 255, 255, 0.4);
+    z-index: 1;
+    background: linear-gradient(
+      135deg,
+      rgba(157, 162, 132, 0.5),
+      rgba(157, 162, 132, 0.35)
+    );
+    
+    // Subtle glow
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 100px;
+      background: radial-gradient(
+        circle at center,
+        rgba(157, 162, 132, 0.4),
+        rgba(157, 162, 132, 0.2) 50%,
+        transparent 70%
+      );
+      opacity: 0.7;
+      filter: blur(8px);
+      z-index: -1;
+    }
+  }
+  
+  &__item {
+    position: relative;
+    z-index: 2;
+    padding: 0.5rem 1.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    text-decoration: none;
+    border-radius: 100px;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    
+    // Perfect centering with flexbox
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    // Ensure no extra spacing
+    margin: 0 !important;
+    box-sizing: border-box;
+    
+    // Force opacity to always be 1
+    opacity: 1 !important;
+    
+    // Only allow scale transforms - NO color transition for instant chameleon effect
+    transform: scale(1) translateY(0) translateX(0) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                font-weight 0.2s ease;
+    
+    // NO default color - let chameleon classes handle it
+    
+    // Hover effect (transform only, color handled by chameleon classes)
+    &:hover:not(.active) {
+      transform: scale(1.02) translateY(0) translateX(0) !important;
+    }
+    
+    // Active state (transform only, color+weight handled by chameleon classes)
+    &.active {
+      transform: scale(1) translateY(0) translateX(0) !important;
+    }
+    
+    // Click feedback
+    &:active {
+      transform: scale(0.98) translateY(0) translateX(0) !important;
+    }
+    
+    &.active:active {
+      transform: scale(0.99) translateY(0) translateX(0) !important;
+    }
+  }
+  
+  // Responsive sizing
+  @media (max-width: 1100px) {
+    gap: 0.25rem;
+    padding: 0.4rem 0.4rem;
+    
+    &__slider {
+      left: 0;
+      top: 0.4rem;
+      bottom: 0.4rem;
+    }
+    
+    &__item {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    padding: 0.35rem 0.35rem;
+    
+    &__slider {
+      left: 0;
+      top: 0.35rem;
+      bottom: 0.35rem;
+    }
+    
+    &__item {
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// Simple glow animation
+@keyframes sliderGlow {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+// Chameleon effect - adapt to different background sections
+// Sections 1 & 3 (Home, Projects) - LIGHT backgrounds with DARK text
+// Using higher specificity to ensure proper override
+.nano-pill.nano-pill--home,
+.nano-pill.nano-pill--projects {
+  background: rgba(44, 40, 29, 0.08) !important;
+  border-color: rgba(44, 40, 29, 0.15) !important;
+  box-shadow: 
+    0 6px 24px rgba(44, 40, 29, 0.1),
+    0 2px 6px rgba(44, 40, 29, 0.05),
+    inset 0.5px 1px rgba(255, 255, 255, 0.3) !important;
+
+  // ALL nav items get dark text
+  .nano-pill__item {
+    color: rgba(44, 40, 29, 0.75) !important;
+    
+    &:hover:not(.active) {
+      color: rgba(44, 40, 29, 0.95) !important;
+    }
+    
+    &.active {
+      color: #2c281d !important;
+      text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .nano-pill__slider {
+    background: linear-gradient(
+      135deg,
+      rgba(44, 40, 29, 0.25),
+      rgba(44, 40, 29, 0.15)
+    ) !important;
+    box-shadow: 
+      0 3px 14px rgba(44, 40, 29, 0.15),
+      0 1px 5px rgba(44, 40, 29, 0.1),
+      inset 0 0.5px 1px rgba(255, 255, 255, 0.4) !important;
+  }
+}
+
+// Sections 2 & 4 (About, Contact) - DARK backgrounds with WHITE text
+// Using higher specificity to ensure these override base styles
+.nano-pill.nano-pill--about,
+.nano-pill.nano-pill--contact {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.25),
+    0 2px 6px rgba(0, 0, 0, 0.15),
+    inset 0 0.5px 1px rgba(255, 255, 255, 0.3) !important;
+
+  // ALL nav items get white text - this is the key fix!
+  .nano-pill__item {
+    // Default/normal state - WHITE for all items
+    color: rgba(255, 255, 255, 0.75) !important;
+    
+    // Hover state - BRIGHTER white for non-active items
+    &:hover:not(.active) {
+      color: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    // Active state - PURE white with shadow
+    &.active {
+      color: #ffffff !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .nano-pill__slider {
+    // Brighter slider for dark backgrounds
+    background: linear-gradient(
+      135deg,
+      rgba(157, 162, 132, 0.85),
+      rgba(157, 162, 132, 0.7)
+    ) !important;
+    box-shadow: 
+      0 3px 16px rgba(157, 162, 132, 0.5),
+      0 1px 6px rgba(157, 162, 132, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+  }
+}
+
+// Section-specific styling - subtle enhancement
+.fp-viewing-home,
+.fp-viewing-about,
+.fp-viewing-projects,
+.fp-viewing-contact {
+  .nano-pill {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 
+      0 6px 24px rgba(44, 40, 29, 0.1),
+      0 2px 6px rgba(44, 40, 29, 0.05),
+      inset 0 0.5px 1px rgba(255, 255, 255, 0.3);
   }
 }
 // #fp-nav {
@@ -165,9 +453,6 @@ h3 {
       background: transparent !important;
       &__nav {
         font-size: 22px !important;
-        li:first-child {
-          color: #fff !important;
-        }
       }
       &__logo {
         border-radius: 0 0 12px 12px;
@@ -192,9 +477,6 @@ h3 {
       background: rgba(255, 255, 255, 0.4) !important;
       &__nav {
         font-size: 18px !important;
-        li:nth-child(2) {
-          color: #fff !important;
-        }
       }
     }
     .resume-btn {
@@ -206,9 +488,6 @@ h3 {
       background: rgba(255, 255, 255, 0.4) !important;
       &__nav {
         font-size: 18px !important;
-        li:nth-child(3) {
-          color: #fff !important;
-        }
       }
     }
     .resume-btn {
@@ -220,9 +499,6 @@ h3 {
       background: rgba(255, 255, 255, 0.4) !important;
       &__nav {
         font-size: 18px !important;
-        li:nth-child(4) {
-          color: #fff !important;
-        }
       }
     }
     .resume-btn {
@@ -261,26 +537,416 @@ iframe {
   width: 82.8% !important;
   height: 100% !important;
 }
-.resume-btn {
+// Resume Sidebar Trigger - Elegant & Subtle
+.resume-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 1.4rem !important;
   background: transparent !important;
-  border: 3px solid $secondary !important;
-  font-size: 22px !important;
-  padding: 10px 24px !important;
-  font-weight: 700 !important;
-  height: unset !important;
-  box-shadow: inset 0 0 0 0 $secondary !important;
-  // transition: ease-out 0.3s;
-  width: 150px;
-}
-.resume-btn:hover {
-  box-shadow: inset 150px 0 0 0 $secondary !important;
+  border: none !important;
   cursor: pointer;
-  color: #fff !important;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 10px;
+  overflow: visible;
+  
+  // Critical: Force button to stay in place - prevent all unwanted transforms
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  will-change: auto !important;
+  
+  // Smooth transitions for background and opacity only
+  transition: background 0.3s ease, opacity 0.3s ease;
+  
+  // Document icon
+  &__icon {
+    width: 21px;
+    height: 21px;
+    color: rgba($secondary, 0.7);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  
+  // Text
+  &__text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba($secondary, 0.85);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  // Frosted glass backdrop that intensifies on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 10px;
+    background: rgba($secondary, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+  }
+  
+  // Subtle bottom accent line
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1.4rem;
+    right: 1.4rem;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($primary, 0.6) 20%,
+      rgba($primary, 0.6) 80%,
+      transparent
+    );
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  // Hover state - subtle frosted glass effect
+  &:hover {
+    background: rgba($secondary, 0.04) !important;
+    
+    &::before {
+      opacity: 1;
+      background: rgba($secondary, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      inset: 0;
+    }
+    
+    &::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    
+    .resume-trigger__icon {
+      color: rgba($secondary, 0.95);
+      transform: scale(1.08) translateY(-1px);
+      filter: drop-shadow(0 2px 4px rgba($primary, 0.2));
+    }
+    
+    .resume-trigger__text {
+      color: $secondary;
+      transform: translateY(-0.5px);
+      letter-spacing: 0.025em;
+    }
+  }
+  
+  // Active state (sidebar open) - same as hover
+  &.active {
+    background: rgba($secondary, 0.04) !important;
+    
+    &::before {
+      opacity: 1;
+      background: rgba($secondary, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      inset: 0;
+    }
+    
+    &::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    
+    .resume-trigger__icon {
+      color: rgba($secondary, 0.95);
+      transform: scale(1.08) translateY(-1px);
+      filter: drop-shadow(0 2px 4px rgba($primary, 0.2));
+    }
+    
+    .resume-trigger__text {
+      color: $secondary;
+      transform: translateY(-0.5px);
+      letter-spacing: 0.025em;
+    }
+  }
+  
+  // Click feedback - minimal scale only
+  &:active {
+    transform: scale(0.98) !important;
+    
+    .resume-trigger__icon {
+      transform: scale(1.05) translateY(0) !important;
+    }
+  }
+  
+  // Mobile variant
+  &--mobile {
+    width: 100%;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem 1.5rem !important;
+    background: rgba(157, 162, 132, 0.1) !important;
+    border: 1px solid rgba(157, 162, 132, 0.25) !important;
+    border-radius: 12px;
+    
+    &::after {
+      left: 10%;
+      right: 10%;
+    }
+    
+    .resume-trigger__icon {
+      width: 22px;
+      height: 22px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .resume-trigger__text {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    
+    &:hover {
+      background: rgba(157, 162, 132, 0.2) !important;
+      border-color: rgba(157, 162, 132, 0.4) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 12px rgba(157, 162, 132, 0.25);
+      
+      .resume-trigger__icon {
+        color: #fff;
+      }
+      
+      .resume-trigger__text {
+        color: #fff;
+      }
+    }
+    
+    &.active {
+      background: rgba(157, 162, 132, 0.3) !important;
+      border-color: rgba(157, 162, 132, 0.5) !important;
+      transform: none !important;
+      
+      .resume-trigger__icon {
+        color: #fff;
+      }
+      
+      .resume-trigger__text {
+        color: #fff;
+      }
+    }
+  }
+  
+  // Responsive sizing
+  @media (max-width: 1100px) {
+    gap: 0.65rem;
+    padding: 0.6rem 1.3rem !important;
+    
+    &::after {
+      left: 1.3rem;
+      right: 1.3rem;
+    }
+    
+    &__icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    &__text {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    gap: 0.6rem;
+    padding: 0.55rem 1.2rem !important;
+    
+    &::after {
+      left: 1.2rem;
+      right: 1.2rem;
+    }
+    
+    &__icon {
+      width: 19px;
+      height: 19px;
+    }
+    
+    &__text {
+      font-size: 0.85rem;
+    }
+  }
 }
-.resume-btn.active {
-  box-shadow: inset 150px 0 0 0 $secondary !important;
 
-  color: #fff !important;
+// Adapt resume trigger colors based on section backgrounds
+// Default/Light sections (Home, Projects) - Dark text
+.resume-trigger {
+  .resume-trigger__icon {
+    color: rgba($secondary, 0.7);
+  }
+  
+  .resume-trigger__text {
+    color: rgba($secondary, 0.85);
+  }
+  
+  &::before {
+    background: rgba($secondary, 0.03);
+  }
+  
+  &::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($secondary, 0.3) 20%,
+      rgba($secondary, 0.3) 80%,
+      transparent
+    );
+  }
+  
+  &:hover,
+  &.active {
+    background: rgba($secondary, 0.04) !important;
+    
+    &::before {
+      background: rgba($secondary, 0.06);
+    }
+    
+    &::after {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba($secondary, 0.5) 20%,
+        rgba($secondary, 0.5) 80%,
+        transparent
+      );
+    }
+    
+    .resume-trigger__icon {
+      color: rgba($secondary, 0.95);
+      filter: drop-shadow(0 2px 4px rgba($secondary, 0.15));
+    }
+    
+    .resume-trigger__text {
+      color: $secondary;
+    }
+  }
+}
+
+// Dark sections (About, Contact) - White text (same as nav items)
+@media (min-width: 800px) {
+  .fp-viewing-about,
+  .fp-viewing-contact {
+    .resume-trigger {
+      .resume-trigger__icon {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
+      
+      .resume-trigger__text {
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+      
+      &::before {
+        background: rgba(255, 255, 255, 0.03) !important;
+      }
+      
+      &::after {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3) 20%,
+          rgba(255, 255, 255, 0.3) 80%,
+          transparent
+        ) !important;
+      }
+      
+      &:hover,
+      &.active {
+        background: rgba(255, 255, 255, 0.06) !important;
+        
+        &::before {
+          background: rgba(255, 255, 255, 0.08) !important;
+        }
+        
+        &::after {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5) 20%,
+            rgba(255, 255, 255, 0.5) 80%,
+            transparent
+          ) !important;
+        }
+        
+        .resume-trigger__icon {
+          color: rgba(255, 255, 255, 0.95) !important;
+          filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2)) !important;
+        }
+        
+        .resume-trigger__text {
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
+  
+  // Ensure Home and Projects sections have dark text
+  .fp-viewing-home,
+  .fp-viewing-projects {
+    .resume-trigger {
+      .resume-trigger__icon {
+        color: rgba($secondary, 0.7) !important;
+      }
+      
+      .resume-trigger__text {
+        color: rgba($secondary, 0.85) !important;
+      }
+      
+      &::before {
+        background: rgba($secondary, 0.03) !important;
+      }
+      
+      &::after {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba($secondary, 0.3) 20%,
+          rgba($secondary, 0.3) 80%,
+          transparent
+        ) !important;
+      }
+      
+      &:hover,
+      &.active {
+        background: rgba($secondary, 0.04) !important;
+        
+        &::before {
+          background: rgba($secondary, 0.06) !important;
+        }
+        
+        &::after {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba($secondary, 0.5) 20%,
+            rgba($secondary, 0.5) 80%,
+            transparent
+          ) !important;
+        }
+        
+        .resume-trigger__icon {
+          color: rgba($secondary, 0.95) !important;
+          filter: drop-shadow(0 2px 4px rgba($secondary, 0.15)) !important;
+        }
+        
+        .resume-trigger__text {
+          color: $secondary !important;
+        }
+      }
+    }
+  }
 }
 
 .menu {
@@ -347,10 +1013,61 @@ iframe {
   transform: translateX(100vw);
   visibility: hidden;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  ul {
+  
+  &__list {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: unset !important;
+    
     li {
-      padding: 2rem;
+      padding: 0.75rem 0;
+      list-style: none;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  &__item {
+    padding: 0.75rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none;
+    border-radius: 100px;
+    background: rgba(157, 162, 132, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(157, 162, 132, 0.2);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    display: inline-block;
+    min-width: 180px;
+    text-align: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    
+    &:hover {
+      background: rgba(157, 162, 132, 0.18);
+      border-color: rgba(157, 162, 132, 0.35);
+      color: #fff !important;
+      transform: translateX(-5px);
+    }
+    
+    &.active {
+      background: rgba(157, 162, 132, 0.3);
+      border-color: rgba(157, 162, 132, 0.5);
+      color: #fff !important;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(157, 162, 132, 0.3);
+    }
+    
+    &:active {
+      transform: translateX(-3px) scale(0.98);
+    }
+    
+    &.active:active {
+      color: #fff !important;
+      opacity: 1;
     }
   }
 }

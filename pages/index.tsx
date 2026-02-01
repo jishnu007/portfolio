@@ -82,11 +82,16 @@ const Home: NextPage = () => {
       if (anchor) {
         e.preventDefault();
         const href = anchor.getAttribute('href');
+        
         if (href) {
           const targetElement = document.querySelector(href);
+          
           if (targetElement && parallaxContainerRef.current) {
             const container = parallaxContainerRef.current;
-            const targetPosition = (targetElement as HTMLElement).offsetTop;
+            // Calculate position relative to container, not offsetParent
+            const containerRect = container.getBoundingClientRect();
+            const targetRect = targetElement.getBoundingClientRect();
+            const targetPosition = container.scrollTop + (targetRect.top - containerRect.top);
             
             container.scrollTo({
               top: targetPosition,

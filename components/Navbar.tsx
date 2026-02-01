@@ -2,7 +2,7 @@ import { Drawer } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
 import useWindowDimensions from "../utils/useWindowDimensions";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Resume from "./Resume";
 import useScrollDirection from "../utils/useScrollDirection";
 
@@ -11,9 +11,18 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [sliderStyle, setSliderStyle] = useState({ transform: 'translateX(0px)', width: '0px' });
+  
+  // Derive currentSection from activeIndex for single source of truth
+  const currentSection = ['home', 'about', 'projects', 'contact'][activeIndex];
+  
+  const navItemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const pillContainerRef = useRef<HTMLDivElement | null>(null);
+  const lastDetectedIndexRef = useRef(0); // Track last detected index to prevent redundant updates
 
   useEffect(() => {
-    setHasMounted(true); // Only true after component mounts
+    setHasMounted(true);
   }, []);
 
   const showDrawer = () => setVisible(true);
@@ -34,9 +43,107 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+    setActiveIndex(index);
+  };
+
+  // Update slider position and width based on active nav item
+  useEffect(() => {
+    const updateSlider = () => {
+      const activeItem = navItemsRef.current[activeIndex];
+      const container = pillContainerRef.current;
+      if (activeItem && container) {
+        const containerRect = container.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        const offsetLeft = itemRect.left - containerRect.left;
+        
+        setSliderStyle({
+          transform: `translateX(${offsetLeft}px)`,
+          width: `${itemRect.width}px`,
+        });
+      }
+    };
+    
+    // Small delay to ensure DOM is ready
+    setTimeout(updateSlider, 100);
+    window.addEventListener('resize', updateSlider);
+    return () => window.removeEventListener('resize', updateSlider);
+  }, [activeIndex, hasMounted]);
+
+  // Detect current section for chameleon effect - works with parallax container
+  useEffect(() => {
+    if (!hasMounted) return;
+
+    const detectSectionColor = () => {
+      const sections = [
+        { id: 'home', element: document.getElementById('home') },
+        { id: 'about', element: document.getElementById('about') },
+        { id: 'projects', element: document.getElementById('projects') },
+        { id: 'contact', element: document.getElementById('contact') },
+      ];
+
+      // Find which section is most visible in the viewport
+      let bestSection = sections[0];
+      let bestScore = -Infinity;
+      
+      for (const section of sections) {
+        if (section.element) {
+          const rect = section.element.getBoundingClientRect();
+          
+          // Calculate visibility score: how much of this section is visible in viewport
+          const viewportHeight = window.innerHeight;
+          const visibleTop = Math.max(0, rect.top);
+          const visibleBottom = Math.min(viewportHeight, rect.bottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          
+          // Score = visible pixels. Higher score = more visible
+          if (visibleHeight > bestScore) {
+            bestScore = visibleHeight;
+            bestSection = section;
+          }
+        }
+      }
+      
+      // Update activeIndex only if section actually changed
+      const sectionToIndex: Record<string, number> = {
+        'home': 0,
+        'about': 1,
+        'projects': 2,
+        'contact': 3,
+      };
+      const newIndex = sectionToIndex[bestSection.id];
+      
+      if (newIndex !== undefined && newIndex !== lastDetectedIndexRef.current) {
+        lastDetectedIndexRef.current = newIndex;
+        setActiveIndex(newIndex);
+      }
+    };
+
+    // Detect on scroll within parallax container
+    const parallaxContainer = document.querySelector('.parallaxContainer') || document.querySelector('[class*="parallax"]');
+    
+    if (parallaxContainer) {
+      parallaxContainer.addEventListener('scroll', detectSectionColor, { passive: true });
+    }
+    
+    // Fallback to window scroll
+    window.addEventListener('scroll', detectSectionColor, { passive: true });
+    
+    // Initial detection with delays
+    setTimeout(detectSectionColor, 100);
+    setTimeout(detectSectionColor, 500);
+
+    return () => {
+      if (parallaxContainer) {
+        parallaxContainer.removeEventListener('scroll', detectSectionColor);
+      }
+      window.removeEventListener('scroll', detectSectionColor);
+    };
+  }, [hasMounted]);
+
   // Avoid rendering navigation until component has mounted
   if (!hasMounted) return null;
-
+  
   return (
     <div
       className={[
@@ -45,7 +152,9 @@ const Navbar = () => {
         scrollDirection === "down" && !scrolledToTop
           ? "navbar-droped-down"
           : "",
+        `fp-viewing-${currentSection}`, // Add section class for CSS targeting
       ].join(" ")}
+      data-current-section={currentSection}
     >
       <div
         id="nav_id"
@@ -62,54 +171,105 @@ const Navbar = () => {
         />
       </div>
 
-      {/* Navigation links */}
+      {/* Navigation links - Clean Frosted Glass Pill */}
       {
-        <ul className="navbar__nav flex text-center items-center font-bold text-xl">
-          <li
-            className="px-8"
-            data-aos="fade-down"
-            data-aos-easing="linear"
-            data-aos-duration="600"
+        <nav className="nano-pill-nav">
+          <div 
+            className={`nano-pill nano-pill--${currentSection}`} 
+            ref={pillContainerRef}
+            data-current-section={currentSection}
           >
-            <a href="#home">Home</a>
-          </li>
-          <li
-            className="px-8"
-            data-aos="fade-down"
-            data-aos-easing="linear"
-            data-aos-duration="700"
-          >
-            <a href="#about">About</a>
-          </li>
-          <li
-            className="px-8"
-            data-aos="fade-down"
-            data-aos-easing="linear"
-            data-aos-duration="800"
-          >
-            <a href="#projects">Projects</a>
-          </li>
-          <li
-            className="px-8"
-            data-aos="fade-down"
-            data-aos-easing="linear"
-            data-aos-duration="900"
-          >
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
+            <div 
+              className="nano-pill__slider"
+              style={sliderStyle}
+            />
+            <a
+              ref={(el) => (navItemsRef.current[0] = el)}
+              href="#home"
+              className={`nano-pill__item ${activeIndex === 0 ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, 0)}
+            >
+              Home
+            </a>
+            <a
+              ref={(el) => (navItemsRef.current[1] = el)}
+              href="#about"
+              className={`nano-pill__item ${activeIndex === 1 ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, 1)}
+            >
+              About
+            </a>
+            <a
+              ref={(el) => (navItemsRef.current[2] = el)}
+              href="#projects"
+              className={`nano-pill__item ${activeIndex === 2 ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, 2)}
+            >
+              Projects
+            </a>
+            <a
+              ref={(el) => (navItemsRef.current[3] = el)}
+              href="#contact"
+              className={`nano-pill__item ${activeIndex === 3 ? 'active' : ''}`}
+              onClick={(e) => handleNavClick(e, 3)}
+            >
+              Contact
+            </a>
+          </div>
+        </nav>
       }
 
       {/* Resume button and Hamburger for mobile */}
       {width && width > 769 ? (
         <button
-          className={`resume-btn ${visible ? "active aos-init aos-animate" : "aos-init aos-animate"}`}
+          type="button"
+          className={`resume-trigger ${visible ? "active" : ""}`}
           onClick={showDrawer}
-          data-aos="fade-down"
-          data-aos-easing="linear"
-          data-aos-duration="1100"
+          aria-label="View Resume"
         >
-          Resume
+          <svg 
+            className="resume-trigger__icon" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M14 2V8H20" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M16 13H8" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M16 17H8" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M10 9H9H8" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="resume-trigger__text">Resume</span>
         </button>
       ) : (
         <div className="hamburger">
@@ -156,27 +316,105 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {width && width <= 769 && (
         <div className={navMenu ? "mobile-nav opened" : "mobile-nav"}>
-          <ul className="flex text-center items-center font-bold text-xl">
-            <li className="px-8">
-              <a href="#home" onClick={handleCloseMenu}>
+          <ul className="mobile-nav__list">
+            <li>
+              <a 
+                href="#home" 
+                onClick={(e) => {
+                  handleCloseMenu();
+                  handleNavClick(e, 0);
+                }} 
+                className={`mobile-nav__item ${activeIndex === 0 ? 'active' : ''}`}
+              >
                 Home
               </a>
             </li>
-            <li className="px-8" onClick={handleCloseMenu}>
-              <a href="#about">About</a>
+            <li>
+              <a 
+                href="#about" 
+                onClick={(e) => {
+                  handleCloseMenu();
+                  handleNavClick(e, 1);
+                }} 
+                className={`mobile-nav__item ${activeIndex === 1 ? 'active' : ''}`}
+              >
+                About
+              </a>
             </li>
-            <li className="px-8" onClick={handleCloseMenu}>
-              <a href="#projects">Projects</a>
+            <li>
+              <a 
+                href="#projects" 
+                onClick={(e) => {
+                  handleCloseMenu();
+                  handleNavClick(e, 2);
+                }} 
+                className={`mobile-nav__item ${activeIndex === 2 ? 'active' : ''}`}
+              >
+                Projects
+              </a>
             </li>
-            <li className="px-8" onClick={handleCloseMenu}>
-              <a href="#contact">Contact</a>
+            <li>
+              <a 
+                href="#contact" 
+                onClick={(e) => {
+                  handleCloseMenu();
+                  handleNavClick(e, 3);
+                }} 
+                className={`mobile-nav__item ${activeIndex === 3 ? 'active' : ''}`}
+              >
+                Contact
+              </a>
             </li>
           </ul>
           <button
-            className={`resume-btn ${visible ? "active" : ""}`}
+            type="button"
+            className={`resume-trigger resume-trigger--mobile ${visible ? "active" : ""}`}
             onClick={showDrawer}
+            aria-label="View Resume"
           >
-            Resume
+            <svg 
+              className="resume-trigger__icon" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path 
+                d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+              <path 
+                d="M14 2V8H20" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+              <path 
+                d="M16 13H8" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+              <path 
+                d="M16 17H8" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+              <path 
+                d="M10 9H9H8" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="resume-trigger__text">Resume</span>
           </button>
         </div>
       )}
