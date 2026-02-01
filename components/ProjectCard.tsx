@@ -1,11 +1,19 @@
 import { useState, memo } from "react";
+import dynamic from "next/dynamic";
 import Styles from "../styles/Projectcard.module.scss";
-import { Drawer, Carousel } from "antd";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
 import useWindowDimensions from "../utils/useWindowDimensions";
 import Image from "next/image";
 import type { Project } from "../types";
+
+// Lazy load Drawer and Carousel - only needed when project card is clicked
+const Drawer = dynamic(() => import("antd").then((mod) => mod.Drawer), {
+  ssr: false,
+});
+const Carousel = dynamic(() => import("antd").then((mod) => mod.Carousel), {
+  ssr: false,
+});
 
 interface ProjectCardProps {
   data: Project;

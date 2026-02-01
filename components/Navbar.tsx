@@ -1,11 +1,18 @@
-import { Drawer } from "antd";
+import dynamic from "next/dynamic";
 import Icon from "@mdi/react";
 import { mdiArrowLeftThinCircleOutline } from "@mdi/js";
 import Image from "next/image";
 import useWindowDimensions from "../utils/useWindowDimensions";
 import { useEffect, useState, useRef, useCallback, memo, useMemo } from "react";
-import Resume from "./Resume";
 import useScrollDirection from "../utils/useScrollDirection";
+
+// Lazy load Drawer and Resume since they're only needed when opened
+const Drawer = dynamic(() => import("antd").then((mod) => mod.Drawer), {
+  ssr: false,
+});
+const Resume = dynamic(() => import("./Resume"), {
+  ssr: false,
+});
 
 const Navbar = () => {
   const { width } = useWindowDimensions();

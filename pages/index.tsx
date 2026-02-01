@@ -7,16 +7,28 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import { TextLoop } from "../components/TextLoop";
-import ProjectCard from "../components/ProjectCard";
-import ContactMe from "../components/ContactMe";
 import useWindowDimensions from "../utils/useWindowDimensions";
 import type { AnimationState, Project } from "../types";
 
-// Lazy load heavy components (no SSR)
+// Lazy load heavy components with no SSR and loading state
 const DynamicCloud = dynamic(
   () => import("../utils/dynamic-cloud").then((mod) => mod.DynamicCloud),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => <div style={{ height: '400px' }} />, 
+  }
 );
+
+// Lazy load ProjectCard with SSR but deferred hydration
+const ProjectCard = dynamic(() => import("../components/ProjectCard"), {
+  loading: () => <div style={{ height: '300px', background: '#f0f0f0', borderRadius: '8px' }} />,
+});
+
+// Lazy load ContactMe - it's below the fold
+const ContactMe = dynamic(() => import("../components/ContactMe"), {
+  loading: () => <div style={{ height: '500px' }} />,
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   const { height, width } = useWindowDimensions();

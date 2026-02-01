@@ -30,6 +30,15 @@ export default function Document() {
           type="font/ttf"
           crossOrigin="anonymous"
         />
+        
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        
+        {/* Preconnect to critical origins */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Meta tags for performance */}
+        <meta name="theme-color" content="#9da284" />
       </Head>
       <body>
         <Main />
