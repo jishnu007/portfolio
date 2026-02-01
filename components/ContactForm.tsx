@@ -23,7 +23,7 @@ export default function ContactForm() {
   async function onSubmitForm(values: any) {
     let config = {
       method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
+      url: "/api/contact",
       headers: {
         "Content-Type": "application/json",
       },
@@ -36,16 +36,26 @@ export default function ContactForm() {
       if (response.status == 200) {
         reset();
         notification["success"]({
-          message: "Message has been successfully send ",
-          // description:
-          //   "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+          message: "Message has been successfully sent",
         });
       }
     } catch (err) {
-      console.log(err, "erorr");
+      console.log(err, "error");
+      
+      // Extract meaningful error message
+      let errorMessage = "Please try again later";
+      
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        // API returned a specific error message
+        errorMessage = err.response.data.error;
+      } else if (err instanceof Error) {
+        // General error with message
+        errorMessage = err.message;
+      }
+      
       notification["error"]({
-        message: "Can't send the message something went wrong",
-        description: err as any,
+        message: "Can't send the message, something went wrong",
+        description: errorMessage,
       });
     }
   }
