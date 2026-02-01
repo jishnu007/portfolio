@@ -706,7 +706,8 @@ iframe {
     width: 100%;
     justify-content: center;
     margin: 0;
-    padding: 1.2rem 1.5rem !important;
+    margin-top: auto;
+    padding: 1rem 1.5rem !important;
     background: rgba(157, 162, 132, 0.25) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -716,6 +717,7 @@ iframe {
     box-shadow: 
       0 -4px 16px rgba(0, 0, 0, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
     
     &::before {
       display: none;
@@ -798,7 +800,7 @@ iframe {
   
   @media (max-width: 900px) {
     gap: 0.6rem;
-    padding: 0.55rem 1.2rem !important;
+    padding: 1rem !important;
     
     &::after {
       left: 1.2rem;
@@ -1042,6 +1044,7 @@ iframe {
   padding: 0;
   width: min(85vw, 320px);
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   outline: 0;
   z-index: 9;
   transform: translateX(100%);
@@ -1049,6 +1052,8 @@ iframe {
   transition: 
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   
   // Frosted glass backdrop
   background: rgba(44, 40, 29, 0.95);
@@ -1069,6 +1074,7 @@ iframe {
       rgba(157, 162, 132, 0.05) 100%
     );
     pointer-events: none;
+    z-index: -1;
   }
   
   &__list {
@@ -1077,8 +1083,11 @@ iframe {
     align-items: stretch;
     gap: 0.5rem;
     margin: 0 !important;
-    padding: 6rem 1.5rem 2rem 1.5rem;
+    padding: 5rem 1.5rem 0.5rem 1.5rem;
     list-style: none;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
     
     li {
       list-style: none;
