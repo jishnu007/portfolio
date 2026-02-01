@@ -1,0 +1,68 @@
+/**
+ * Font Face Declarations
+ * Self-hosted fonts for optimal performance
+ */
+
+// Antro Vectra - Custom display font
+@font-face {
+  font-family: "Antro_vectra";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url(../public/fonts/Antro_Vectra.ttf) format("truetype");
+}
+
+// Montserrat - Light (300)
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Montserrat Light"), local("Montserrat-Light"),
+    url(../public/fonts/montserrat-v31-latin-300.woff2) format("woff2"),
+    url(../public/fonts/montserrat-v31-latin-300.woff) format("woff");
+}
+
+// Montserrat - Regular (400)
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Montserrat Regular"), local("Montserrat-Regular"),
+    url(../public/fonts/montserrat-v31-latin-regular.woff2) format("woff2"),
+    url(../public/fonts/montserrat-v31-latin-regular.woff) format("woff");
+}
+
+// Montserrat - Medium (500)
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Montserrat Medium"), local("Montserrat-Medium"),
+    url(../public/fonts/montserrat-v31-latin-500.woff2) format("woff2"),
+    url(../public/fonts/montserrat-v31-latin-500.woff) format("woff");
+}
+
+// Montserrat - Bold (700)
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Montserrat Bold"), local("Montserrat-Bold"),
+    url(../public/fonts/montserrat-v31-latin-700.woff2) format("woff2"),
+    url(../public/fonts/montserrat-v31-latin-700.woff) format("woff");
+}
+
+// Montserrat - Extra Bold (800)
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local("Montserrat ExtraBold"), local("Montserrat-ExtraBold"),
+    url(../public/fonts/montserrat-v31-latin-800.woff2) format("woff2"),
+    url(../public/fonts/montserrat-v31-latin-800.woff) format("woff");
+}

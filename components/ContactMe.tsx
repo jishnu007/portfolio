@@ -1,12 +1,20 @@
 import React, { useMemo, useState, useEffect } from "react";
-import ContactForm from "./ContactForm";
-import Footer from "./Footer";
+import dynamic from "next/dynamic";
 import Styles from "../styles/contactme.module.scss";
 import StylesFooter from "../styles/Footer.module.scss";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { TextLoop } from "./TextLoop";
 import shuffle from "../utils/shuffle";
 import weekday from "../utils/weekday";
+
+// Lazy load ContactForm and Footer - they're below the fold
+const ContactForm = dynamic(() => import("./ContactForm"), {
+  ssr: false,
+  loading: () => <div style={{ height: '400px' }} />,
+});
+const Footer = dynamic(() => import("./Footer"), {
+  ssr: false,
+});
 
 // Memoize synonyms array outside component to prevent re-creation on each render
 const SYNONYMS = [

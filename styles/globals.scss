@@ -1,8 +1,10 @@
+// Import self-hosted fonts - must be first
+@use "fonts";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+
 $montserrat: "Montserrat", sans-serif;
 $primary: #9da284;
 $secondary: #2c281d;
@@ -58,12 +60,6 @@ a {
   font-family: Montserrat;
 }
 h3 {
-}
-@font-face {
-  font-family: "Antro_vectra";
-  src:
-    local("Antro_vectra"),
-    url(../public/fonts/Antro_Vectra.ttf) format("truetype");
 }
 .elipse {
   background-color: #d4dace;

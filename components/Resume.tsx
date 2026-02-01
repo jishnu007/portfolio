@@ -2,7 +2,7 @@ import React from "react";
 
 function Resume() {
   // Your resume PDF path
-  const resumePdfUrl = "/Jishnu Pavithran-FE.pdf";
+  const resumePdfUrl = "/Jishnu Pavithran - SE.pdf";
 
   return (
     <div style={{ 
