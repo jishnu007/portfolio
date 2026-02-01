@@ -8,6 +8,15 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        {/* Preload LCP image for immediate discovery */}
+        <link
+          rel="preload"
+          as="image"
+          href="/_next/image?url=%2Fmyself.webp&w=640&q=75"
+          imageSrcSet="/_next/image?url=%2Fmyself.webp&w=640&q=75 1x, /_next/image?url=%2Fmyself.webp&w=828&q=75 2x"
+          fetchPriority="high"
+        />
+        
         {/* Preload critical fonts for faster rendering */}
         <link
           rel="preload"

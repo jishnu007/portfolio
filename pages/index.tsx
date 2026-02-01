@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { gsap } from "gsap";
 import styles from "../styles/Home.module.scss";
 import { TextLoop } from "../components/TextLoop";
 import useWindowDimensions from "../utils/useWindowDimensions";
@@ -269,46 +270,39 @@ const Home: NextPage = () => {
     return () => document.removeEventListener("click", handleAnchorClick);
   }, []);
 
-  // Initial hero animation - only run once with proper GSAP handling
+  // Initial hero animation - runs once on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const loadGsapAndAnimate = async () => {
-      const { gsap } = await import("gsap");
-      
-      const heroTimeline = gsap.timeline({ delay: 0.2 });
-      const circle = document.querySelector("#circle");
-      const title = document.querySelector("#hero-title");
-      const subtitle = document.querySelector("#hero-subtitle");
-      const mouse = document.querySelector("#mouse");
+    const heroTimeline = gsap.timeline({ delay: 0.2 });
+    const circle = document.querySelector("#circle");
+    const title = document.querySelector("#hero-title");
+    const subtitle = document.querySelector("#hero-subtitle");
+    const mouse = document.querySelector("#mouse");
 
-      if (circle && title && subtitle) {
-        heroTimeline
-          .fromTo(circle, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
-          .fromTo(title, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
-          .fromTo(subtitle, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
+    if (circle && title && subtitle) {
+      heroTimeline
+        .fromTo(circle, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
+        .fromTo(title, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
+        .fromTo(subtitle, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
 
-        if (mouse && width && width > 967) {
-          heroTimeline.fromTo(
-            mouse,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6 }
-          );
-        }
+      if (mouse && width && width > 967) {
+        heroTimeline.fromTo(
+          mouse,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 }
+        );
       }
+    }
 
-      setHasAnimated((prev) => ({ ...prev, hero: true }));
-    };
-
-    loadGsapAndAnimate();
+    setHasAnimated((prev) => ({ ...prev, hero: true }));
   }, [width]);
 
   // Scroll-triggered animations
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const handleScroll = async () => {
-      const { gsap } = await import("gsap");
+    const handleScroll = () => {
       const viewportHeight = window.innerHeight;
 
       // About section animation
@@ -448,6 +442,7 @@ const Home: NextPage = () => {
                 width={400}
                 height={400}
                 priority
+                fetchPriority="high"
               />
             </div>
           </div>

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $montserrat: "Montserrat", sans-serif;
 $primary: #9da284;
 $secondary: #2c281d;
@@ -85,7 +87,7 @@ $secondary: #2c281d;
           background: linear-gradient(
             135deg,
             $primary 0%,
-            lighten($primary, 10%) 100%
+            color.adjust($primary, $lightness: 10%) 100%
           );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
