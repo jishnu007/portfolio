@@ -80,7 +80,7 @@ const Navbar = () => {
         isClickNavigatingRef.current = false;
       }, 1000);
     },
-    [activeIndex]
+    []
   );
 
   // Update slider position and width based on active nav item
